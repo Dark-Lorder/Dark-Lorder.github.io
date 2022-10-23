@@ -67,7 +67,7 @@
 
   <url>
     <loc>https://www.darklorder.com/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,14 +75,14 @@
   
   <url>
     <loc>https://www.darklorder.com/tags/SRE/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Hello-World/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -91,14 +91,14 @@
   
   <url>
     <loc>https://www.darklorder.com/categories/SRE/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Hello-World/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
