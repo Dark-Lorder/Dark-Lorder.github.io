@@ -4,7 +4,7 @@
   <url>
     <loc>https://www.darklorder.com/2022/08/05/Cloud-Computing/</loc>
     
-    <lastmod>2023-05-11</lastmod>
+    <lastmod>2023-05-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -92,7 +92,7 @@
 
   
   <url>
-    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
+    <loc>https://www.darklorder.com/tags/SRE/</loc>
     <lastmod>2023-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -106,7 +106,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/SRE/</loc>
+    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
     <lastmod>2023-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -115,7 +115,7 @@
 
   
   <url>
-    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
+    <loc>https://www.darklorder.com/categories/SRE/</loc>
     <lastmod>2023-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -129,7 +129,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/SRE/</loc>
+    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
     <lastmod>2023-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
