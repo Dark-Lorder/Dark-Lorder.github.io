@@ -54,6 +54,31 @@
   
   
   <entry>
+    <title>虚拟化技术</title>
+    <link href="/2022/08/10/what-is-a-hypervisor/"/>
+    <url>/2022/08/10/what-is-a-hypervisor/</url>
+    
+    <content type="html"><![CDATA[<p>Hypervisor是所有虚拟化技术的核心。</p><span id="more"></span><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>虚拟化技术源于提升计算机硬件资源使用效率的需求，发展出了Xen、KVM等众多硬件虚拟化方式的虚拟机技术、以Docker容器为代表的软件虚拟化技术，虚拟化技术实质上在不同层级上对于计算机的软硬件资源进行了模拟封装，使得这些资源可按需分配、配置和调度，也为云计算的发展奠定了坚实的基础，甚至可以说没有虚拟化技术的发展就没有云计算发展。</p><p>“虚拟化”的概念最早于1959年6月提出，牛津大学的计算机教授克里斯·托弗在国际信息处理大会上发表了一篇名为《大型高速计算机中的时间共享》的学术报告，文中首次提出了 “虚拟化” 的基本概念，并论述了什么是虚拟化技术。上个世纪60年代，IBM公司最先进行了虚拟化技术的实践探索，发明了一种操作系统虚拟机技术，允许用户在一台主机上运行多个操作系统，让用户尽可能地充分利用昂贵的大型机资源。最初主要运用于大型服务器上，但随着硬件技术突飞猛进的发展，普通PC的性能越来越强，也可用来运行虚拟机，构建云服务平台。</p><p><strong>相关链接</strong><br><a href="https://www.ibm.com/cn-zh/topics/hypervisors?mhsrc=ibmsearch_a&mhq=hypervisor">IBM 虚拟机管理器</a><br><a href="https://www.redhat.com/zh/topics/virtualization/what-is-a-hypervisor">RedHat 什么是虚拟机监控程序</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hypervisor</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hypervisor</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SRE 到底是什么</title>
     <link href="/2022/08/07/What-is-SRE/"/>
     <url>/2022/08/07/What-is-SRE/</url>

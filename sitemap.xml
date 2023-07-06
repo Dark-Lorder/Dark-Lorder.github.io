@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.darklorder.com/2022/08/10/what-is-a-hypervisor/</loc>
+    
+    <lastmod>2023-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/hypervisor/index-1.html</loc>
+    
+    <lastmod>2023-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/hypervisor/index.html</loc>
+    
+    <lastmod>2023-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/2022/08/06/Introduction-to-Cloud-Computing/</loc>
     
     <lastmod>2023-07-06</lastmod>
@@ -151,13 +178,6 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Hello-World/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/tags/SRE/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -165,7 +185,21 @@
   </url>
   
   <url>
+    <loc>https://www.darklorder.com/tags/Hello-World/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/tags/Writing-Article/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/tags/hypervisor/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -188,13 +222,6 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Hello-World/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/categories/SRE/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -202,7 +229,21 @@
   </url>
   
   <url>
+    <loc>https://www.darklorder.com/categories/Hello-World/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/categories/Writing-Article/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/categories/hypervisor/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
