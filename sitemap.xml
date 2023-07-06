@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.darklorder.com/2022/09/01/Install-Docker/</loc>
+    <loc>https://www.darklorder.com/2022/08/06/Introduction-to-Cloud-Computing/</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/</loc>
+    
+    <lastmod>2023-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/01/Install-Docker/</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -128,6 +137,13 @@
 
   
   <url>
+    <loc>https://www.darklorder.com/tags/Docker/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -135,7 +151,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Docker/</loc>
+    <loc>https://www.darklorder.com/tags/SRE/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -155,14 +171,14 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>https://www.darklorder.com/tags/SRE/</loc>
+    <loc>https://www.darklorder.com/categories/Docker/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
-  
-
   
   <url>
     <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
@@ -172,7 +188,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Docker/</loc>
+    <loc>https://www.darklorder.com/categories/SRE/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -187,13 +203,6 @@
   
   <url>
     <loc>https://www.darklorder.com/categories/Writing-Article/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/categories/SRE/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

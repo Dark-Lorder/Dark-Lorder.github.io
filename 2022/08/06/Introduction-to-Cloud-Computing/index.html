@@ -18,24 +18,24 @@
   <meta name="author" content="Dark Lorder">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是 SRE？SRE 需要具备什么能力？">
+    <meta name="description" content="关于云计算基本特征、部署模型和服务模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SRE 到底是什么">
-<meta property="og:url" content="https://www.darklorder.com/2022/08/07/What-is-SRE/index.html">
+<meta property="og:title" content="云计算概论">
+<meta property="og:url" content="https://www.darklorder.com/2022/08/06/Introduction-to-Cloud-Computing/index.html">
 <meta property="og:site_name" content="Dark Lorder">
-<meta property="og:description" content="什么是 SRE？SRE 需要具备什么能力？">
+<meta property="og:description" content="关于云计算基本特征、部署模型和服务模型">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-28T15:48:49.192Z">
+<meta property="article:published_time" content="2022-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-06T18:47:56.712Z">
 <meta property="article:author" content="Dark Lorder">
-<meta property="article:tag" content="SRE">
+<meta property="article:tag" content="Cloud Computing">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SRE 到底是什么 - Dark Lorder</title>
+  <title>云计算概论 - Dark Lorder</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SRE 到底是什么"></span>
+            <span id="subtitle" data-typed-text="云计算概论"></span>
           
         </div>
 
@@ -257,8 +257,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-07 00:00" pubdate>
-          2022年8月7日 凌晨
+        <time datetime="2022-08-06 00:00" pubdate>
+          2022年8月6日 凌晨
         </time>
       </span>
     
@@ -269,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19 字
+          1.4k 字
         
       </span>
     
@@ -280,7 +280,7 @@
         
         
         
-          1 分钟
+          12 分钟
         
       </span>
     
@@ -318,13 +318,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SRE 到底是什么</h1>
+            <h1 style="display: none">云计算概论</h1>
             
             
               <div class="markdown-body">
                 
-                <p>什么是 SRE？SRE 需要具备什么能力？</p>
+                <p>关于云计算基本特征、部署模型和服务模型</p>
 <span id="more"></span>
+
+<h3 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h3><p>让我们首先了解云的五个基本特征，包括按需自助服务、广泛的网络访问、资源池、快速弹性和可度量的服务。</p>
+<p><strong>按需自助服务（On-demand Self-service）：</strong> 用户可以使用简单的界面访问云资源，如处理能力、存储和网络，而无需与每个服务提供商进行人工交互。</p>
+<p><strong>广泛的网络访问（Broad Network Access）：</strong> 可以通过标准机制和平台（如手机、平板电脑、笔记本电脑和工作站）通过网络访问云计算资源。</p>
+<p><strong>资源池（Resource Pooling）：</strong> 云提供商的规模经济，他们将其传递给客户，使云具有成本效益。使用多租户模型，将计算资源集中起来为多个消费者提供服务；云资源是根据需求动态分配和重新分配的，而客户无需关心这些资源的物理位置。</p>
+<p><strong>快速弹性（Rapid Elasticity）：</strong> 用户可以在需要的时候访问更多的资源，在不需要的时候缩小规模，因为资源是弹性供应和释放的。</p>
+<p><strong>可度量的服务（Measured Service）：</strong> 用户只为其使用或预订的东西付费。如果用户不使用资源，就不会付钱。根据利用率透明地监控、测量和报告资源使用情况。</p>
+<h3 id="部署模型"><a href="#部署模型" class="headerlink" title="部署模型"></a>部署模型</h3><p><strong>Public Cloud：公共云</strong> 云服务提供商通过公共网络向用户提供云服务，用户可以根据自己的需求随时使用或释放资源。<br><strong>Private Cloud：私有云</strong> 云服务提供商在企业内部或数据中心中提供云服务，仅对内部员工或合作伙伴提供服务。<br><strong>Hybrid Cloud：混合云</strong> 结合了公有云和私有云的特点，使用户可以在公有云和私有云之间移动工作负载和数据。<br><strong>Community Cloud：社区云</strong> 特定的组织或行业提供的云服务，仅面向该组织或行业的成员。<br><strong>Multi-cloud：多云</strong> 同时采用两个或多个不同的云服务提供商，以获取更好的性能、可靠性、安全性和成本控制等方面的优势。<br><strong>Edge computing 边缘计算</strong> 在边缘设备上进行数据处理和存储，以减少数据传输和响应时间，提高应用程序性能。</p>
+<h3 id="服务模型"><a href="#服务模型" class="headerlink" title="服务模型"></a>服务模型</h3><p><strong>Infrastructure as a Service (IaaS)：基础设施即服务</strong> 提供基础设施服务，例如虚拟机、存储、网络等。<br><strong>Platform as a Service (PaaS)：平台即服务</strong> 提供完整的应用程序开发和部署平台，包括开发、测试、部署和管理工具等。<br><strong>Software as a Service (SaaS)：软件即服务</strong> 提供基于云的应用程序服务，例如邮件、协作、客户关系管理等。<br><strong>Function as a Service (FaaS)：函数即服务</strong> 以事件驱动的方式提供计算服务，例如无服务器计算、事件处理等。<br><strong>Backend as a Service (BaaS)：后端即服务</strong> 提供云端的后端服务，例如数据库、身份认证、通知、存储等。<br><strong>Data as a Service (DaaS)：数据即服务</strong> 提供数据访问和分析服务，例如数据挖掘、数据分析、数据可视化等。<br><strong>Machine as a Service (MaaS)：机器即服务</strong> 提供物联网设备租赁或购买服务，例如传感器、智能家居设备等。<br><strong>Gaming as a Service (GaaS)：游戏即服务</strong> 提供云游戏服务，例如流媒体游戏、云端游戏服务器等。<br><strong>Container as a Service (CaaS)：容器即服务</strong> 提供容器管理平台，快速部署、运行和管理容器化应用程序。<br><strong>Anything as a Service (XaaS)：任何事物即服务</strong> 广义的术语，包括所有可以作为服务提供的事物，例如网络安全服务、身份认证服务、API管理服务等。</p>
+
                 
               </div>
             
@@ -342,7 +352,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SRE/" class="category-chain-item">SRE</a>
+  <a href="/categories/Cloud-Computing/" class="category-chain-item">Cloud Computing</a>
   
   
 
@@ -357,7 +367,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/SRE/">#SRE</a>
+        <a href="/tags/Cloud-Computing/">#Cloud Computing</a>
       
     </div>
   
@@ -369,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SRE 到底是什么</div>
-      <div>https://www.darklorder.com/2022/08/07/What-is-SRE/</div>
+      <div>云计算概论</div>
+      <div>https://www.darklorder.com/2022/08/06/Introduction-to-Cloud-Computing/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月7日</div>
+          <div>2022年8月6日</div>
         </div>
       
       
@@ -412,9 +422,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/01/Install-Docker/" title="Docker安装部署">
+                      <a href="/2022/08/07/What-is-SRE/" title="SRE 到底是什么">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker安装部署</span>
+                        <span class="hidden-mobile">SRE 到底是什么</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -422,8 +432,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/06/Introduction-to-Cloud-Computing/" title="云计算概论">
-                        <span class="hidden-mobile">云计算概论</span>
+                      <a href="/2022/08/05/Cloud-Computing/" title="云计算（Cloud Computing）">
+                        <span class="hidden-mobile">云计算（Cloud Computing）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -444,7 +454,7 @@
         var options = Object.assign(
           {"clientID":"8c8150dbe84124d5f79c","clientSecret":"05cc827cbe693a3de0490acd81ee0ea7fe8b3d38","repo":"blogtalk","owner":"Dark-Lorder","admin":["Dark-Lorder"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://gitalk.dk-proxy.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '5f971536ad312e9ad77249cb8b17020b'
+            id: '84f00627610cfc663adc969c829544cc'
           }
         )
         var gitalk = new Gitalk(options);
