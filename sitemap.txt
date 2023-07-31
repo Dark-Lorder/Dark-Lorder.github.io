@@ -1,3 +1,4 @@
+https://www.darklorder.com/2023/07/24/Spend-money-to-buy-lessons/
 https://www.darklorder.com/2023/01/04/Life-and-work/
 https://www.darklorder.com/2023/01/01/walk-in-your-own-time-zone/
 https://www.darklorder.com/2022/07/25/Origin-or-hard-work/
@@ -25,11 +26,11 @@ https://www.darklorder.com/tags/Cloud-Computing/
 https://www.darklorder.com/tags/Docker/
 https://www.darklorder.com/tags/SRE/
 https://www.darklorder.com/tags/Hello-World/
-https://www.darklorder.com/tags/Writing-Article/
 https://www.darklorder.com/tags/hypervisor/
+https://www.darklorder.com/tags/Writing-Article/
 https://www.darklorder.com/categories/Cloud-Computing/
 https://www.darklorder.com/categories/Docker/
 https://www.darklorder.com/categories/SRE/
 https://www.darklorder.com/categories/Hello-World/
-https://www.darklorder.com/categories/Writing-Article/
 https://www.darklorder.com/categories/hypervisor/
+https://www.darklorder.com/categories/Writing-Article/
