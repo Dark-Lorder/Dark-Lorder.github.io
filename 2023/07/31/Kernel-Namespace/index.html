@@ -18,24 +18,24 @@
   <meta name="author" content="Dark Lorder">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Docker容器简介">
+    <meta name="description" content="Namespaces、CGroups、Containerruntime">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker容器简介">
-<meta property="og:url" content="https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/index.html">
+<meta property="og:title" content="名称空间">
+<meta property="og:url" content="https://www.darklorder.com/2023/07/31/Kernel-Namespace/index.html">
 <meta property="og:site_name" content="Dark Lorder">
-<meta property="og:description" content="Docker容器简介">
+<meta property="og:description" content="Namespaces、CGroups、Containerruntime">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-31T08:20:09.450Z">
+<meta property="article:published_time" content="2023-07-31T07:19:34.000Z">
+<meta property="article:modified_time" content="2023-07-31T09:42:23.916Z">
 <meta property="article:author" content="Dark Lorder">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Cloud Native">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Docker容器简介 - Dark Lorder</title>
+  <title>名称空间 - Dark Lorder</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Docker容器简介"></span>
+            <span id="subtitle" data-typed-text="名称空间"></span>
           
         </div>
 
@@ -257,8 +257,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-02 00:00" pubdate>
-          2022年9月2日 凌晨
+        <time datetime="2023-07-31 15:19" pubdate>
+          2023年7月31日 下午
         </time>
       </span>
     
@@ -269,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          995 字
+          4.5k 字
         
       </span>
     
@@ -280,7 +280,7 @@
         
         
         
-          9 分钟
+          38 分钟
         
       </span>
     
@@ -318,31 +318,141 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Docker容器简介</h1>
+            <h1 style="display: none">名称空间</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Docker容器简介</p>
+                <p>Namespaces、CGroups、Containerruntime</p>
 <span id="more"></span>
 
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>容器是一种轻量级、可移植、自包含的软件打包技术，使应用程序可以在几乎任何地方以相同的方式运行。</p>
-<p>开发人员在自己笔记本上创建并测试好的容器，无需任何修改就能够在生产系统的虚拟机、物理服务器或公有云主机上运行。<a href="https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/">Docker</a>是容器的一种，还有其他容器，比如 CoreOS 的 rkt。</p>
-<p>容器有效的将单个操作系统的资源划分到孤立的组中，以便更好的在孤立的组之间平衡有冲突的资源使用需求。</p>
-<p>其实容器本身并不是一个特别新的技术，早在2000年就已经有了，当时是用来在chroot环境(隔离mount namespac的工具)中做进程隔离（使用namespac和cgroups）</p>
-<p>容器的本质，一句话解释，就是一组受到资源限制，彼此间相互隔离的进程。实现起来也并不复杂，隔离所用到的技术都是由linux内核本身提供的（所以说目前绝大部分的容器都是必须要跑在linux里面的）。其中<code>namespace</code>用来做访问隔离（每个容器进程都有自己独立的进程空间，看不到其他进程），<code>cgroups</code>用来做资源限制（cpu、内存、存储、网络的使用限制）。</p>
-<p>总的来说容器就是一种基于操作系统能力的隔离技术，这和<a href="https://www.darklorder.com/2022/08/10/what-is-a-hypervisor/">虚拟化</a>技术不可同日而语。</p>
-<p>分层构建（Layered Construction）、联合挂载（Union Mounting）和写时复制（Copy-on-Write）是三种 Linux 文件系统的特性，它们在容器技术中广泛应用。</p>
-<ol>
-<li><p>分层构建：分层构建是指将一个文件系统划分为多个层次，每个层次只包含文件系统的一部分。这种分层构建的优点是可以重用已有的文件系统层次，提高了构建效率。在容器中，分层构建使得容器只需要记录自己的变更，从而避免了重复存储文件系统的问题。</p>
+<h4 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h4><p>内核名称空间（Kernel Namespace）是Linux操作系统中的一个重要概念，用于隔离和管理系统资源。在Linux中，名称空间是一种资源隔离机制，它允许不同的进程看到和访问的资源独立于其他进程，从而实现进程间的隔离性。内核名称空间特别用于隔离内核级别的资源。</p>
+<p>如果把<strong>Linux操作系统</strong>比作一个<strong>大房子</strong>，那<strong>命名空间</strong>指的就是这个房子中的一个个<strong>房间</strong>，住在每个房间里的人都自以为独享了整个房子的资源，但其实大家仅仅只是在共享的基础之上互相隔离，共享指的是共享全局的资源，而隔离指的是局部上彼此保持隔离，因而命名空间的本质就是指：一种在空间上<strong>隔离</strong>的概念，当下盛行的许多容器虚拟化技术（典型代表如LXC、Docker）就是基于linux命名空间的概念而来的。</p>
+<p>Docker容器十分类似LXC容器，他们实现了相同的安全特性。在你使用 <code>docker run</code>,启动一个Docker容器的时候，  Docker 会创建设置一个 namespaces 和 control groups 来配合容器。</p>
+<p>命名空间提供的隔离，是第一个也是最简单的安全形式，在容器中运行的进程在其他容器或主机中是看不到的，基本上不会相互影响。</p>
+<p>每一个容器都有自己的网络机制，这意味这不同的容器能访问其他容器接口的sockets。当然如果你希望容器能相互配置使用，也可以将容器的网络接口释放出来，利用端口转发，让容器像主机一样可以在网络中被识别。都你使用一个公共的端口来连接容器直接内部的网络，你就是尝试去在容器之间进行ping。实际上所有的容器都是利用桥接方式来共享端口连接，一台主机就可以连接运行在上面的所有容器。</p>
+<p><strong>名称空间管理相关的系统调用</strong></p>
+<ul>
+<li><p>clone()：创建子进程，并将其隔离至新建的名称空间之中； 负责创建一个子进程，若同时使用了CLONE_NEW*相关的标志，则为每个标志创建出名称空间，并将该进程置于该名称空间中；</p>
 </li>
-<li><p>联合挂载：联合挂载是指将多个文件系统联合成一个虚拟文件系统。在联合挂载的过程中，只有最上层的文件系统是可写的，其余文件系统只读。在容器中，联合挂载使得容器可以使用主机上的一些文件系统，从而避免了容器中需要存储相同的文件系统的问题。</p>
+<li><p>setns()：将进程加入到指定的现有名称空间中； 通过操作进程相关的&#x2F;proc&#x2F;[pid]&#x2F;ns&#x2F;目录完成</p>
 </li>
-<li><p>写时复制：写时复制是指当一个进程试图修改一个文件时，会先将这个文件复制到一个新的位置，然后在新的位置上进行修改，从而避免了原始文件的修改。在容器中，写时复制可以使得容器只需要记录自己的变更，从而避免了对主机上原始文件的修改。</p>
+<li><p>unshare()：将进程隔离至新建的名称空间中； 与clone()类似，但不同之处在于，unshare()在当前进程中创建名称空间，一旦调用完成，当前进程即位于新的名称空间之中；</p>
 </li>
-</ol>
-<p>这三种特性在容器技术中被广泛应用，使得容器可以更高效地运行，同时也降低了容器与主机之间的耦合度。</p>
-<p><a href="https://">文章来源于</a></p>
+<li><p>ioctl()：获取名称空间的相关信息。</p>
+</li>
+</ul>
+<p>目前，内核(5.13)支持8种名称空间</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称空间</th>
+<th align="center">调用标志</th>
+<th align="center">隔离内容</th>
+<th align="center">引入时的内核版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>Mount</strong></td>
+<td align="center">CLONE_NEWNS</td>
+<td align="center">挂载点、文件系统</td>
+<td align="center">2.4.19</td>
+</tr>
+<tr>
+<td align="center"><strong>UTS</strong></td>
+<td align="center">CLONE_NEWUFS</td>
+<td align="center">主机名和NIS域名</td>
+<td align="center">2.6.19</td>
+</tr>
+<tr>
+<td align="center"><strong>IPC</strong></td>
+<td align="center">CLONE_NEWIPC</td>
+<td align="center">SysV IPC、POSIX messages</td>
+<td align="center">2.6.19</td>
+</tr>
+<tr>
+<td align="center"><strong>PID</strong></td>
+<td align="center">CLONE_NEWPID</td>
+<td align="center">PID</td>
+<td align="center">2.6.24</td>
+</tr>
+<tr>
+<td align="center"><strong>Network</strong></td>
+<td align="center">CLONE_NEWNET</td>
+<td align="center">网络设备、协议栈、端口等</td>
+<td align="center">2.6.29</td>
+</tr>
+<tr>
+<td align="center"><strong>User</strong></td>
+<td align="center">CLONE_NEWUSER</td>
+<td align="center">User ID和Group ID</td>
+<td align="center">3.8</td>
+</tr>
+<tr>
+<td align="center">Cgroup</td>
+<td align="center">CLONE_NEWCGROUP</td>
+<td align="center">Cgroup根目录及层级结构</td>
+<td align="center">4.6</td>
+</tr>
+<tr>
+<td align="center">Time</td>
+<td align="center">CLONE_NEWTIME</td>
+<td align="center">Boot time和monotonic time</td>
+<td align="center">5.6</td>
+</tr>
+</tbody></table>
+<p><em>备注：<br>monotonic time：单调递增时钟，自系统开机后开始累加计时，但系统休眠时间不计入；<br>boot time：类似于monotonic time，不同之处是，boot time会计入系统休眠时间；</em></p>
+<h4 id="CGroups"><a href="#CGroups" class="headerlink" title="CGroups"></a>CGroups</h4><p>cgroups(Control Groups) 是 linux 内核提供的一种机制，这种机制可以根据需求把一系列系统任务及其子任务整合(或分隔)到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。</p>
+<p>简单说，cgroups 可以限制、记录任务组所使用的物理资源。本质上来说，cgroups 是内核附加在程序上的一系列钩子(hook)，通过程序运行时对资源的调度触发相应的钩子以达到资源追踪和限制的目的。</p>
+<p>cgroups 的主要目的是为不同用户层面的资源管理提供一个统一化的接口。从单个任务的资源控制到操作系统层面的虚拟化，cgroups 提供了以下功能：</p>
+<ul>
+<li>资源限制：cgroups 可以对任务的资源总额进行限制。比如设定任务运行时使用的内存上限，一旦超出就发 OOM（内存溢出）。</li>
+<li>优先级分配：通过分配的 CPU 时间片数量和磁盘 IO 带宽，实际上就等同于控制了任务运行的优先级。</li>
+<li>资源统计：cgoups 可以统计系统的资源使用量，比如 CPU 使用时长、内存用量等。这个功能非常适合当前云端产品按使用量计费的方式。</li>
+<li>隔离：为组隔离命名空间，这样一个组不会看到另一个组的进程、网络连接和文件系统</li>
+<li>任务控制：cgroups 可以对任务执行挂起、恢复等操作。</li>
+</ul>
+<p><strong>CGroups能够限制的资源：</strong></p>
+<ul>
+<li>blkio：块设备IO</li>
+<li>cpu：CPU</li>
+<li>cpuacct：CPU资源使用报告</li>
+<li>cpuset：多处理器平台上的CPU集合</li>
+<li>devices：设备访问</li>
+<li>freezer：挂起或恢复任务</li>
+<li>memory：内存用量及报告</li>
+<li>perf_event：对cgroup中的任务进行统一性能测试</li>
+<li>net_cls：cgroup中的任务创建的数据报文的类别标识符</li>
+</ul>
+<p>安装Docker后，用户可以在&#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;memory&#x2F;docker&#x2F;目录下看到对Docker组应用的各种限制项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cd /sys/fs/cgroup/memory/</span><br>[root@localhost memory]<span class="hljs-comment"># ls</span><br>cgroup.clone_children           memory.kmem.slabinfo                memory.memsw.limit_in_bytes      memory.swappiness<br>cgroup.event_control            memory.kmem.tcp.failcnt             memory.memsw.max_usage_in_bytes  memory.usage_in_bytes<br>cgroup.procs                    memory.kmem.tcp.limit_in_bytes      memory.memsw.usage_in_bytes      memory.use_hierarchy<br>cgroup.sane_behavior            memory.kmem.tcp.max_usage_in_bytes  memory.move_charge_at_immigrate  notify_on_release<br>memory.failcnt                  memory.kmem.tcp.usage_in_bytes      memory.numa_stat                 release_agent<br>memory.force_empty              memory.kmem.usage_in_bytes          memory.oom_control               system.slice<br>memory.kmem.failcnt             memory.limit_in_bytes               memory.pressure_level            tasks<br>memory.kmem.limit_in_bytes      memory.max_usage_in_bytes           memory.soft_limit_in_bytes<br>memory.kmem.max_usage_in_bytes  memory.memsw.failcnt                memory.stat<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cd /sys/fs/cgroup/memory/</span><br>[root@localhost memory]<span class="hljs-comment"># ls</span><br>cgroup.clone_children       memory.kmem.max_usage_in_bytes      memory.memsw.failcnt             memory.stat<br>cgroup.event_control        memory.kmem.slabinfo                memory.memsw.limit_in_bytes      memory.swappiness<br>cgroup.procs                memory.kmem.tcp.failcnt             memory.memsw.max_usage_in_bytes  memory.usage_in_bytes<br>cgroup.sane_behavior        memory.kmem.tcp.limit_in_bytes      memory.memsw.usage_in_bytes      memory.use_hierarchy<br>init.scope                  memory.kmem.tcp.max_usage_in_bytes  memory.move_charge_at_immigrate  notify_on_release<br>memory.failcnt              memory.kmem.tcp.usage_in_bytes      memory.numa_stat                 release_agent<br>memory.force_empty          memory.kmem.usage_in_bytes          memory.oom_control               system.slice<br>memory.kmem.failcnt         memory.limit_in_bytes               memory.pressure_level            tasks<br>memory.kmem.limit_in_bytes  memory.max_usage_in_bytes           memory.soft_limit_in_bytes       user.slice<br></code></pre></td></tr></table></figure>
+
+<p>用户可以通过修改这些文件值来控制组限制Docker应用资源。</p>
+<h4 id="Container-runtime"><a href="#Container-runtime" class="headerlink" title="Container runtime"></a>Container runtime</h4><p>容器运行时（Container Runtime）是一种软件组件，负责在宿主机上管理和运行容器。它是容器化技术的核心组成部分，允许将应用程序及其依赖项打包并隔离在宿主系统之上。容器运行时与宿主操作系统内核进行交互，并管理容器的生命周期、网络、存储等重要功能。</p>
+<p>容器并非Linux内核中的“一等公民”，它从根本上来说就是由名称空间、CGroups和LSM(Linux内核安全模块) 等几个内核原语组成；</p>
+<ul>
+<li><p>借助于这些内核原语即可设置安全、隔离的进程运行环境，但这也意味着每次创建都得手动执行相关的操作；</p>
+</li>
+<li><p>“容器运行时”便是一组简化该类操作的工具集</p>
+</li>
+</ul>
+<p>“运行时”是进程的生命周期管理工具，容器运行时是一种特指运行和管理容器所需要的软件</p>
+<p>用于帮助用户轻松、高效、安全地部署容器，而且是容器管理的关键组件</p>
+<p>2007年，CGroups引入到Linux内核之后，便出现了一些容器运行时项目，例如LXC(Linux containers)和LMCTFY(Google)等</p>
+<p>容器运行时的主要任务包括：</p>
+<ul>
+<li><p>容器创建：它加载容器镜像，该镜像包含应用程序及其运行时依赖项，并创建一个具有独立文件系统的容器实例。</p>
+</li>
+<li><p>容器执行：运行时启动容器进程，管理其资源，并提供一个独立的执行环境，使其表现为一个隔离的应用程序实例。</p>
+</li>
+<li><p>容器网络：设置网络接口并管理容器的网络连接，使其能够与其他容器或外部网络进行通信。</p>
+</li>
+<li><p>资源管理：运行时确保容器访问所需的资源，同时根据配置的限制限制其对宿主资源的访问。</p>
+</li>
+<li><p>容器终止：当容器内的应用程序完成任务或被显式停止时，运行时负责清理资源并终止容器。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -361,7 +471,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
+  <a href="/categories/Cloud-Native/" class="category-chain-item">Cloud Native</a>
   
   
 
@@ -376,7 +486,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Docker/">#Docker</a>
+        <a href="/tags/Cloud-Native/">#Cloud Native</a>
       
     </div>
   
@@ -388,8 +498,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Docker容器简介</div>
-      <div>https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/</div>
+      <div>名称空间</div>
+      <div>https://www.darklorder.com/2023/07/31/Kernel-Namespace/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +511,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月2日</div>
+          <div>2023年7月31日</div>
         </div>
       
       
@@ -431,18 +541,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/01/The-Eight-Fallacies-of-Distributed-Computing/" title="分布式计算中的八大谬论">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分布式计算中的八大谬论</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/01/Install-Docker/" title="Docker安装部署">
-                        <span class="hidden-mobile">Docker安装部署</span>
+                      <a href="/2023/07/31/Cloud-Native/" title="Cloud-Native">
+                        <span class="hidden-mobile">Cloud-Native</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -463,7 +567,7 @@
         var options = Object.assign(
           {"clientID":"8c8150dbe84124d5f79c","clientSecret":"05cc827cbe693a3de0490acd81ee0ea7fe8b3d38","repo":"blogtalk","owner":"Dark-Lorder","admin":["Dark-Lorder"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://gitalk.dk-proxy.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '85860118827d27874296a2c93a0629bf'
+            id: '7fb38d8cde37d1d200a283c615f606b8'
           }
         )
         var gitalk = new Gitalk(options);
