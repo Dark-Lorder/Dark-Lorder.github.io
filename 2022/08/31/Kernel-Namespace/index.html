@@ -18,25 +18,24 @@
   <meta name="author" content="Dark Lorder">
   <meta name="keywords" content="">
   
-    <meta name="description" content="分布式计算中的八大谬论">
+    <meta name="description" content="Namespaces、CGroups、Containerruntime">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式计算中的八大谬论">
-<meta property="og:url" content="https://www.darklorder.com/2022/10/01/The-Eight-Fallacies-of-Distributed-Computing/index.html">
+<meta property="og:title" content="名称空间">
+<meta property="og:url" content="https://www.darklorder.com/2022/08/31/Kernel-Namespace/index.html">
 <meta property="og:site_name" content="Dark Lorder">
-<meta property="og:description" content="分布式计算中的八大谬论">
+<meta property="og:description" content="Namespaces、CGroups、Containerruntime">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img.darklorder.com/img/202307070417934.jpeg">
-<meta property="article:published_time" content="2022-09-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-06T20:21:11.756Z">
+<meta property="article:published_time" content="2022-08-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-01T11:24:19.325Z">
 <meta property="article:author" content="Dark Lorder">
+<meta property="article:tag" content="Cloud Native">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img.darklorder.com/img/202307070417934.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>分布式计算中的八大谬论 - Dark Lorder</title>
+  <title>名称空间 - Dark Lorder</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -247,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分布式计算中的八大谬论"></span>
+            <span id="subtitle" data-typed-text="名称空间"></span>
           
         </div>
 
@@ -258,8 +257,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-01 00:00" pubdate>
-          2022年10月1日 凌晨
+        <time datetime="2022-08-31 00:00" pubdate>
+          2022年8月31日 凌晨
         </time>
       </span>
     
@@ -270,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          4.5k 字
         
       </span>
     
@@ -281,7 +280,7 @@
         
         
         
-          27 分钟
+          38 分钟
         
       </span>
     
@@ -319,46 +318,141 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">分布式计算中的八大谬论</h1>
+            <h1 style="display: none">名称空间</h1>
             
             
               <div class="markdown-body">
                 
-                <p>分布式计算中的八大谬论</p>
+                <p>Namespaces、CGroups、Containerruntime</p>
 <span id="more"></span>
 
-<img src="https://img.darklorder.com/img/202307070417934.jpeg" srcset="/img/loading.gif" lazyload/>
+<h4 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h4><p>内核名称空间（Kernel Namespace）是Linux操作系统中的一个重要概念，用于隔离和管理系统资源。在Linux中，名称空间是一种资源隔离机制，它允许不同的进程看到和访问的资源独立于其他进程，从而实现进程间的隔离性。内核名称空间特别用于隔离内核级别的资源。</p>
+<p>如果把<strong>Linux操作系统</strong>比作一个<strong>大房子</strong>，那<strong>命名空间</strong>指的就是这个房子中的一个个<strong>房间</strong>，住在每个房间里的人都自以为独享了整个房子的资源，但其实大家仅仅只是在共享的基础之上互相隔离，共享指的是共享全局的资源，而隔离指的是局部上彼此保持隔离，因而命名空间的本质就是指：一种在空间上<strong>隔离</strong>的概念，当下盛行的许多容器虚拟化技术（典型代表如LXC、Docker）就是基于linux命名空间的概念而来的。</p>
+<p>Docker容器十分类似LXC容器，他们实现了相同的安全特性。在你使用 <code>docker run</code>,启动一个Docker容器的时候，  Docker 会创建设置一个 namespaces 和 control groups 来配合容器。</p>
+<p>命名空间提供的隔离，是第一个也是最简单的安全形式，在容器中运行的进程在其他容器或主机中是看不到的，基本上不会相互影响。</p>
+<p>每一个容器都有自己的网络机制，这意味这不同的容器能访问其他容器接口的sockets。当然如果你希望容器能相互配置使用，也可以将容器的网络接口释放出来，利用端口转发，让容器像主机一样可以在网络中被识别。都你使用一个公共的端口来连接容器直接内部的网络，你就是尝试去在容器之间进行ping。实际上所有的容器都是利用桥接方式来共享端口连接，一台主机就可以连接运行在上面的所有容器。</p>
+<p><strong>名称空间管理相关的系统调用</strong></p>
+<ul>
+<li><p>clone()：创建子进程，并将其隔离至新建的名称空间之中； 负责创建一个子进程，若同时使用了CLONE_NEW*相关的标志，则为每个标志创建出名称空间，并将该进程置于该名称空间中；</p>
+</li>
+<li><p>setns()：将进程加入到指定的现有名称空间中； 通过操作进程相关的&#x2F;proc&#x2F;[pid]&#x2F;ns&#x2F;目录完成</p>
+</li>
+<li><p>unshare()：将进程隔离至新建的名称空间中； 与clone()类似，但不同之处在于，unshare()在当前进程中创建名称空间，一旦调用完成，当前进程即位于新的名称空间之中；</p>
+</li>
+<li><p>ioctl()：获取名称空间的相关信息。</p>
+</li>
+</ul>
+<p>目前，内核(5.13)支持8种名称空间</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称空间</th>
+<th align="center">调用标志</th>
+<th align="center">隔离内容</th>
+<th align="center">引入时的内核版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>Mount</strong></td>
+<td align="center">CLONE_NEWNS</td>
+<td align="center">挂载点、文件系统</td>
+<td align="center">2.4.19</td>
+</tr>
+<tr>
+<td align="center"><strong>UTS</strong></td>
+<td align="center">CLONE_NEWUFS</td>
+<td align="center">主机名和NIS域名</td>
+<td align="center">2.6.19</td>
+</tr>
+<tr>
+<td align="center"><strong>IPC</strong></td>
+<td align="center">CLONE_NEWIPC</td>
+<td align="center">SysV IPC、POSIX messages</td>
+<td align="center">2.6.19</td>
+</tr>
+<tr>
+<td align="center"><strong>PID</strong></td>
+<td align="center">CLONE_NEWPID</td>
+<td align="center">PID</td>
+<td align="center">2.6.24</td>
+</tr>
+<tr>
+<td align="center"><strong>Network</strong></td>
+<td align="center">CLONE_NEWNET</td>
+<td align="center">网络设备、协议栈、端口等</td>
+<td align="center">2.6.29</td>
+</tr>
+<tr>
+<td align="center"><strong>User</strong></td>
+<td align="center">CLONE_NEWUSER</td>
+<td align="center">User ID和Group ID</td>
+<td align="center">3.8</td>
+</tr>
+<tr>
+<td align="center">Cgroup</td>
+<td align="center">CLONE_NEWCGROUP</td>
+<td align="center">Cgroup根目录及层级结构</td>
+<td align="center">4.6</td>
+</tr>
+<tr>
+<td align="center">Time</td>
+<td align="center">CLONE_NEWTIME</td>
+<td align="center">Boot time和monotonic time</td>
+<td align="center">5.6</td>
+</tr>
+</tbody></table>
+<p><em>备注：<br>monotonic time：单调递增时钟，自系统开机后开始累加计时，但系统休眠时间不计入；<br>boot time：类似于monotonic time，不同之处是，boot time会计入系统休眠时间；</em></p>
+<h4 id="CGroups"><a href="#CGroups" class="headerlink" title="CGroups"></a>CGroups</h4><p>cgroups(Control Groups) 是 linux 内核提供的一种机制，这种机制可以根据需求把一系列系统任务及其子任务整合(或分隔)到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。</p>
+<p>简单说，cgroups 可以限制、记录任务组所使用的物理资源。本质上来说，cgroups 是内核附加在程序上的一系列钩子(hook)，通过程序运行时对资源的调度触发相应的钩子以达到资源追踪和限制的目的。</p>
+<p>cgroups 的主要目的是为不同用户层面的资源管理提供一个统一化的接口。从单个任务的资源控制到操作系统层面的虚拟化，cgroups 提供了以下功能：</p>
+<ul>
+<li>资源限制：cgroups 可以对任务的资源总额进行限制。比如设定任务运行时使用的内存上限，一旦超出就发 OOM（内存溢出）。</li>
+<li>优先级分配：通过分配的 CPU 时间片数量和磁盘 IO 带宽，实际上就等同于控制了任务运行的优先级。</li>
+<li>资源统计：cgoups 可以统计系统的资源使用量，比如 CPU 使用时长、内存用量等。这个功能非常适合当前云端产品按使用量计费的方式。</li>
+<li>隔离：为组隔离命名空间，这样一个组不会看到另一个组的进程、网络连接和文件系统</li>
+<li>任务控制：cgroups 可以对任务执行挂起、恢复等操作。</li>
+</ul>
+<p><strong>CGroups能够限制的资源：</strong></p>
+<ul>
+<li>blkio：块设备IO</li>
+<li>cpu：CPU</li>
+<li>cpuacct：CPU资源使用报告</li>
+<li>cpuset：多处理器平台上的CPU集合</li>
+<li>devices：设备访问</li>
+<li>freezer：挂起或恢复任务</li>
+<li>memory：内存用量及报告</li>
+<li>perf_event：对cgroup中的任务进行统一性能测试</li>
+<li>net_cls：cgroup中的任务创建的数据报文的类别标识符</li>
+</ul>
+<p>安装Docker后，用户可以在&#x2F;sys&#x2F;fs&#x2F;cgroup&#x2F;memory&#x2F;docker&#x2F;目录下看到对Docker组应用的各种限制项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cd /sys/fs/cgroup/memory/</span><br>[root@localhost memory]<span class="hljs-comment"># ls</span><br>cgroup.clone_children           memory.kmem.slabinfo                memory.memsw.limit_in_bytes      memory.swappiness<br>cgroup.event_control            memory.kmem.tcp.failcnt             memory.memsw.max_usage_in_bytes  memory.usage_in_bytes<br>cgroup.procs                    memory.kmem.tcp.limit_in_bytes      memory.memsw.usage_in_bytes      memory.use_hierarchy<br>cgroup.sane_behavior            memory.kmem.tcp.max_usage_in_bytes  memory.move_charge_at_immigrate  notify_on_release<br>memory.failcnt                  memory.kmem.tcp.usage_in_bytes      memory.numa_stat                 release_agent<br>memory.force_empty              memory.kmem.usage_in_bytes          memory.oom_control               system.slice<br>memory.kmem.failcnt             memory.limit_in_bytes               memory.pressure_level            tasks<br>memory.kmem.limit_in_bytes      memory.max_usage_in_bytes           memory.soft_limit_in_bytes<br>memory.kmem.max_usage_in_bytes  memory.memsw.failcnt                memory.stat<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cd /sys/fs/cgroup/memory/</span><br>[root@localhost memory]<span class="hljs-comment"># ls</span><br>cgroup.clone_children       memory.kmem.max_usage_in_bytes      memory.memsw.failcnt             memory.stat<br>cgroup.event_control        memory.kmem.slabinfo                memory.memsw.limit_in_bytes      memory.swappiness<br>cgroup.procs                memory.kmem.tcp.failcnt             memory.memsw.max_usage_in_bytes  memory.usage_in_bytes<br>cgroup.sane_behavior        memory.kmem.tcp.limit_in_bytes      memory.memsw.usage_in_bytes      memory.use_hierarchy<br>init.scope                  memory.kmem.tcp.max_usage_in_bytes  memory.move_charge_at_immigrate  notify_on_release<br>memory.failcnt              memory.kmem.tcp.usage_in_bytes      memory.numa_stat                 release_agent<br>memory.force_empty          memory.kmem.usage_in_bytes          memory.oom_control               system.slice<br>memory.kmem.failcnt         memory.limit_in_bytes               memory.pressure_level            tasks<br>memory.kmem.limit_in_bytes  memory.max_usage_in_bytes           memory.soft_limit_in_bytes       user.slice<br></code></pre></td></tr></table></figure>
 
-
-<p>构建分布式系统是一项复杂的工作。架构，设计，编码和测试对分布式系统的成功都至关重要。任何一点的失败都可能导致性能下降，故障频发，费用超标以及最终导致客户流失。在20世纪90年代Sun Microsystems的Peter Deutsch，James Gosling和其他人总结出了分布式计算的八个谬论。随着时间的推移，IT人员对这些谬论的认识可能已经消退，所以想要提醒下大家。</p>
-<h3 id="八大谬论是："><a href="#八大谬论是：" class="headerlink" title="八大谬论是："></a><strong>八大谬论是：</strong></h3><p><strong>网络可靠。 The network is reliable.</strong><br><strong>延迟为零。 Latency is zero.</strong><br><strong>带宽是无限的。 Bandwidth is infinite.</strong><br><strong>网络是安全的。 The network is secure.</strong><br><strong>拓扑不会改变。 Topology doesn’t change.</strong><br><strong>只有一个管理员。 There is one administrator.</strong><br><strong>运输成本为零。 Transport cost is zero.</strong><br><strong>网络是同质的。The network is homogeneous.</strong></p>
-<h4 id="网络可靠"><a href="#网络可靠" class="headerlink" title="网络可靠"></a>网络可靠</h4><p>在局域内，网络可能看起来坚如磐石。毕竟，现在网络组件多久失败一次？即使单个组件发生故障，也确实存在大量冗余？那么，随着网络变得越来越复杂，网络管理就越容易出错，大多数都是配置错误。在某些情况下，多达三分之一的网络更改会导致影响网络可靠性的错误。软件和硬件都可能出现故障，尤其是路由器，它们占所有故障的四分之一左右。“不间断”电源也可能会中断，人们可能会发生不明智的设备配置更改，并且可能存在网络拥塞，拒绝服务（DoS）攻击以及软件和固件升级或修补程序失败。网络遭受自然灾害和非自然灾害，设计一个对这类东西具有弹性的网络需要技巧。广域链接超出您的控制范围，很容易出错。</p>
-<p>最近几个月，Azure上的事件令人痛苦，而且这种失败率是主要云服务提供商的典型特征。对于移动应用程序，各种各样的事情都可能会出错：网络请求将以不可预测的间隔失败，目标将不可用，数据将到达目的地但无法发回确认，数据将在传输中损坏或到达不完整。移动应用程序必须在网络可靠性范围的可怕范围内具有弹性，但所有分布式应用程序必须能够应对所有这些可能性，并且网络节点必须能够应对服务器故障。</p>
-<h4 id="延迟为零"><a href="#延迟为零" class="headerlink" title="延迟为零"></a>延迟为零</h4><p>延迟与带宽不同。延迟是等待响应所花费的时间。除了明显的处理延迟外，还有网络延迟，包括传播延迟，节点延迟和拥塞延迟。传播延迟随距离增加：约为30 ms。欧洲和美国之间。路径中的节点数决定了节点延迟。</p>
-<p>通常，开发人员在内部网中构建分布式系统，这些系统具有无关紧要的延迟，因此进行频繁的细粒度网络调用几乎不会受到惩罚。这种设计错误只有在投入实时系统时才会变得明显。</p>
-<p>高延迟的一个令人不安的影响是它不是恒定的。在糟糕的网络上，偶尔可以在几秒钟内计算出来。就其性质而言，无法保证网络服务单个数据包的顺序，甚至不能保证请求进程仍然存在。延迟会让事情变得更糟。此外，在应用程序通过发送多个同时请求进行补偿的情况下，可以通过对其的响应来加剧暂时高延迟。</p>
-<h4 id="带宽是无限的"><a href="#带宽是无限的" class="headerlink" title="带宽是无限的"></a>带宽是无限的</h4><p>虽然大多数现代电缆可以处理几乎无限的带宽，但我们还没有找到如何构建足够快的互连设备（集线器，交换机，路由器等）以保证所有连接用户的高带宽。典型的企业内部网仍将具有限制带宽的区域。</p>
-<p>随着公共网络带宽的增加，网络对使用视频和音频的服务的使用也一样快，而视频和音频曾经使用过广播技术。诸如社交媒体之类的新用途往往会吸收不断增加的带宽。此外，主要城市以外的许多地方都存在“最后一英里”的限制，并且丢包的可能性也在增加。</p>
-<p>一般而言，我们需要谨慎地假设高带宽是一种普遍的体验。无论网络带宽如何令人印象深刻，它都无法接近共同托管进程可以通信的速度。</p>
-<h4 id="网络是安全的"><a href="#网络是安全的" class="headerlink" title="网络是安全的"></a>网络是安全的</h4><p>令人遗憾的是仍然遇到具有基本安全漏洞的基于网络的系统。网络攻击逐年增加，并且在好奇心，恶意和犯罪方面已经超越了它们的原始根源，成为国际冲突和政治“行动”的一部分。网络攻击是IT生活的一部分：对开发人员来说很无聊，但却是必不可少的。部分问题是网络入侵检测往往是低优先级，因此我们并不总是意识到成功的网络攻击。</p>
-<p>传统上，漏洞通常是配置不当的防火墙的结果。大多数防火墙都会经常被检测出来，因为你会立即发现你是否愚蠢地禁用它们。然而，这只是破坏网络和防火墙的一种方式中的一种，只是防御的一部分。Wi-Fi通常是一个弱点，使用自己的设备（BYOD）可以允许通过受损设备进行入侵，虚拟化和软件定义网络（SDN）也是如此。越来越多的DevOps对快速变化的基础设施的需求使得更难以保持必要的控制措施。企业网络中的僵尸网络是一个持续存在的问题，以及通过业务合作伙伴的入侵。</p>
-<p>您需要假设网络是敌对的，并且安全性必须深入。这意味着将安全性构建到分布式应用程序及其主机的基本设计中。</p>
-<p>通过纵深防御，分布式系统的任何部分都需要具有访问其他网络资源的安全方式。</p>
-<p>安全带来了自身的复杂性。这将来自维护不同用户帐户，权限，证书，帐户等的管理开销。一个主要的云网络中断是由于权限在更新之前到期而导致的。</p>
-<h4 id="拓扑不会改变"><a href="#拓扑不会改变" class="headerlink" title="拓扑不会改变"></a>拓扑不会改变</h4><p>网络拓扑不断变化，速度非常快。由于“网络敏捷性”的压力越来越大，这是不可避免的，以便与快速变化的业务需求保持同步。</p>
-<p>无论您在何处部署应用程序，都必须假设大部分网络拓扑都可能无法控制。网络管理员将一次进行更改，原因可能不符合您的利益。他们将移动服务器并更改网络拓扑以获得性能或安全性，并在服务器和网络故障的情况下进行路由更改。</p>
-<p>因此，依赖特定端点或路由的持久性是错误的。必须始终从任何分布式设计中抽象出网络的物理结构。</p>
-<h4 id="只有一个管理员"><a href="#只有一个管理员" class="headerlink" title="只有一个管理员"></a>只有一个管理员</h4><p>除非系统完全存在于小型LAN中，否则将有不同的管理员与网络的各种组件相关联。他们将拥有不同程度的专业知识，不同的职责和优先事项。</p>
-<p>如果出现导致服务失败的问题，这将很重要。您的服务级别协议将要求在一定时间内做出响应。第一阶段将是确定问题。除非有问题的网络部分的管理员是您的开发团队的一部分，否则这可能并不容易。不幸的是，这不太可能。在许多网络中，问题可能完全是另一个组织的责任。如果云组件是应用程序的重要组成部分，并且云中断，则无法确定优先级。你所能做的就是等待。</p>
-<p>如果网络中有许多管理员，那么协调升级到网络或应用程序就更加困难，特别是当涉及到几个忙碌的人时。升级和部署必须协调完成，涉及的人数越多，这就变得越困难！</p>
-<h4 id="运输成本为零"><a href="#运输成本为零" class="headerlink" title="运输成本为零"></a>运输成本为零</h4><p>运输成本是指通过网络传输数据的总体成本。我们可以参考时间和计算机资源，或者我们可以参考财务成本。</p>
-<p>将数据从应用程序层传输到传输层需要CPU和其他资源。需要对结构化信息进行序列化（编组）或解析以将数据传输到线路上。这种性能影响可能大于带宽和延迟时间，因为XML的冗长和复杂性使得XML占用JSON的两倍。</p>
-<p>金融运输成本不仅包括创建网络的硬件和安装成本，还包括监控和维护网络服务器，服务和基础设施的成本，以及如果发现带宽不足，或者您的服务器实际上无法处理足够的并发请求。我们还需要考虑租用线路和云服务的成本，这些成本由所使用的带宽支付</p>
-<h4 id="网络是同质的"><a href="#网络是同质的" class="headerlink" title="网络是同质的"></a>网络是同质的</h4><p>今天的同质网络是罕见的，甚至比首次发现谬论时更为罕见！网络可能连接计算机和其他设备，每个设备具有不同的操作系统，不同的数据传输协议，并且所有设备都与来自各种供应商的网络组件相连。</p>
-<p>但是，异构网络没有什么特别的错误，除非它涉及需要专门支持，设备或驱动程序的专有数据传输协议。从应用程序的角度来看，如果数据以开放标准格式（如CSV，XML或JSON）传输，并且使用行业标准的查询数据（如ODBC）的方法，则会有很大帮助。</p>
-<p>如果所有组件都来自一个供应商，则可靠性更高，因为测试覆盖范围可能更大，但实际情况是组件的丰富组合。这意味着互操作性应该从任何分布式系统的设计开始就内置。</p>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>虽然这个指导是在二十年前制定的，但我们今天仍在犯这些错误。这些错误显示为不安全的端点，由于大型对象的序列化导致的超时，丢失的事务，性能降低等等。避免这些错误意味着在每次设计和代码审查中需要考虑这些谬论。</p>
-<p><strong>相关链接</strong><br><a target="_blank" rel="noopener" href="https://dandelioncloud.cn/article/details/1526804530352373762/">文章来源于 分布式计算中的八大谬论-蒲公英云</a></p>
+<p>用户可以通过修改这些文件值来控制组限制Docker应用资源。</p>
+<h4 id="Container-runtime"><a href="#Container-runtime" class="headerlink" title="Container runtime"></a>Container runtime</h4><p>容器运行时（Container Runtime）是一种软件组件，负责在宿主机上管理和运行容器。它是容器化技术的核心组成部分，允许将应用程序及其依赖项打包并隔离在宿主系统之上。容器运行时与宿主操作系统内核进行交互，并管理容器的生命周期、网络、存储等重要功能。</p>
+<p>容器并非Linux内核中的“一等公民”，它从根本上来说就是由名称空间、CGroups和LSM(Linux内核安全模块) 等几个内核原语组成；</p>
+<ul>
+<li><p>借助于这些内核原语即可设置安全、隔离的进程运行环境，但这也意味着每次创建都得手动执行相关的操作；</p>
+</li>
+<li><p>“容器运行时”便是一组简化该类操作的工具集</p>
+</li>
+</ul>
+<p>“运行时”是进程的生命周期管理工具，容器运行时是一种特指运行和管理容器所需要的软件</p>
+<p>用于帮助用户轻松、高效、安全地部署容器，而且是容器管理的关键组件</p>
+<p>2007年，CGroups引入到Linux内核之后，便出现了一些容器运行时项目，例如LXC(Linux containers)和LMCTFY(Google)等</p>
+<p>容器运行时的主要任务包括：</p>
+<ul>
+<li><p>容器创建：它加载容器镜像，该镜像包含应用程序及其运行时依赖项，并创建一个具有独立文件系统的容器实例。</p>
+</li>
+<li><p>容器执行：运行时启动容器进程，管理其资源，并提供一个独立的执行环境，使其表现为一个隔离的应用程序实例。</p>
+</li>
+<li><p>容器网络：设置网络接口并管理容器的网络连接，使其能够与其他容器或外部网络进行通信。</p>
+</li>
+<li><p>资源管理：运行时确保容器访问所需的资源，同时根据配置的限制限制其对宿主资源的访问。</p>
+</li>
+<li><p>容器终止：当容器内的应用程序完成任务或被显式停止时，运行时负责清理资源并终止容器。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -367,6 +461,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Cloud-Native/" class="category-chain-item">Cloud Native</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Cloud-Native/">#Cloud Native</a>
+      
+    </div>
   
 </div>
 
@@ -376,8 +498,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>分布式计算中的八大谬论</div>
-      <div>https://www.darklorder.com/2022/10/01/The-Eight-Fallacies-of-Distributed-Computing/</div>
+      <div>名称空间</div>
+      <div>https://www.darklorder.com/2022/08/31/Kernel-Namespace/</div>
     </div>
     <div class="license-meta">
       
@@ -389,7 +511,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月1日</div>
+          <div>2022年8月31日</div>
         </div>
       
       
@@ -419,9 +541,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/01/Cloud-native-white-paper/" title="云原生 2.0 白皮书">
+                      <a href="/2022/09/01/Install-Docker/" title="Docker安装部署">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">云原生 2.0 白皮书</span>
+                        <span class="hidden-mobile">Docker安装部署</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -429,8 +551,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/30/Cloud-Native/" title="Cloud-Native">
-                        <span class="hidden-mobile">Cloud-Native</span>
+                      <a href="/2022/08/20/REST-API/" title="一文彻底弄懂REST API">
+                        <span class="hidden-mobile">一文彻底弄懂REST API</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -451,7 +573,7 @@
         var options = Object.assign(
           {"clientID":"8c8150dbe84124d5f79c","clientSecret":"05cc827cbe693a3de0490acd81ee0ea7fe8b3d38","repo":"blogtalk","owner":"Dark-Lorder","admin":["Dark-Lorder"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://gitalk.dk-proxy.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'da7858769f70b58e4f6019453d9a3b23'
+            id: 'b06265815a6fd885622ca3edad27c9a5'
           }
         )
         var gitalk = new Gitalk(options);
