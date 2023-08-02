@@ -26,7 +26,7 @@
 <meta property="og:description" content="Hypervisor是所有虚拟化技术的核心。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-02T16:58:28.939Z">
+<meta property="article:modified_time" content="2023-08-02T17:35:36.364Z">
 <meta property="article:author" content="Dark Lorder">
 <meta property="article:tag" content="Hypervisor">
 <meta name="twitter:card" content="summary_large_image">
@@ -269,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          520 字
+          1.4k 字
         
       </span>
     
@@ -280,7 +280,7 @@
         
         
         
-          5 分钟
+          12 分钟
         
       </span>
     
@@ -326,15 +326,71 @@
                 <p>Hypervisor是所有虚拟化技术的核心。</p>
 <span id="more"></span>
 
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>虚拟化技术源于提升计算机硬件资源使用效率的需求，发展出了Xen、KVM等众多硬件虚拟化方式的虚拟机技术、以Docker容器为代表的软件虚拟化技术，虚拟化技术实质上在不同层级上对于计算机的软硬件资源进行了模拟封装，使得这些资源可按需分配、配置和调度，也为云计算的发展奠定了坚实的基础，甚至可以说没有虚拟化技术的发展就没有云计算发展。</p>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>虚拟化技术源于提升计算机硬件资源使用效率的需求，发展出了Xen、KVM等众多硬件虚拟化方式的虚拟机技术、以Docker容器为代表的软件虚拟化技术，虚拟化技术实质上在不同层级上对于计算机的软硬件资源进行了模拟封装，使得这些资源可按需分配、配置和调度，也为云计算的发展奠定了坚实的基础，甚至可以说没有虚拟化技术的发展就没有云计算发展。</p>
 <p>“虚拟化”的概念最早于1959年6月提出，牛津大学的计算机教授克里斯·托弗在国际信息处理大会上发表了一篇名为《大型高速计算机中的时间共享》的学术报告，文中首次提出了 “虚拟化” 的基本概念，并论述了什么是虚拟化技术。上个世纪60年代，IBM公司最先进行了虚拟化技术的实践探索，发明了一种操作系统虚拟机技术，允许用户在一台主机上运行多个操作系统，让用户尽可能地充分利用昂贵的大型机资源。最初主要运用于大型服务器上，但随着硬件技术突飞猛进的发展，普通PC的性能越来越强，也可用来运行虚拟机，构建云服务平台。</p>
-<p><strong>常用的虚拟化技术有这些：</strong></p>
-<ul>
+<h4 id="常用的虚拟化技术有这些"><a href="#常用的虚拟化技术有这些" class="headerlink" title="常用的虚拟化技术有这些"></a>常用的虚拟化技术有这些</h4><ul>
 <li>微软的Hyper-V</li>
 <li>Linux中的KVM，XEN</li>
 <li>VMware的ESXI</li>
 <li>Docker</li>
 </ul>
+<p>虚拟化包含多个层面，比如硬件虚拟化，这种虚拟化从底层的硬件平台直接支持软件环境；另外一种是操作系统虚拟化，这是Linux的一个亮点。</p>
+<p>在硬件层之上，独立于操作系统的一层软件被称之为hypervisor，或者叫做虚拟机监视器。hypervisor创建了虚拟化平台，而操作系统实例则运行在这个平台上，这使得硬件平台可以被多个操作系统和应用所共享，从而降低硬件的成本。<br>运行在hypervisor上面的实体被称为虚拟机，即VM，是用来放置操作系统、应用和数据元的“容器”。虚拟机中的操作系统和应用程序的数据被存储在虚拟磁盘中，hypervisor利用虚拟磁盘来启动虚拟化平台。虚拟机被封装为一个文件，这样比分布式的文件更好管理。</p>
+<h4 id="虚拟机：虚拟化硬件"><a href="#虚拟机：虚拟化硬件" class="headerlink" title="虚拟机：虚拟化硬件"></a>虚拟机：虚拟化硬件</h4><p>虚拟机 Virtual Machine 指通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统。在实体计算机中能够完成的工作在虚拟机中都能够实现。</p>
+<p>在计算机中创建虚拟机时，需要将实体机的部分硬盘和内存容量作为虚拟机的硬盘和内存容量。每个虚拟机都有独立的 CMOS、硬盘和操作系统，可以像使用实体机一样对虚拟机进行操作。在容器技术之前，业界的网红是虚拟机。</p>
+<p>虚拟机技术的代表，是 VMWare 和 OpenStack。</p>
+<h4 id="容器：将操作系统层虚拟化，是一个标准的软件单元"><a href="#容器：将操作系统层虚拟化，是一个标准的软件单元" class="headerlink" title="容器：将操作系统层虚拟化，是一个标准的软件单元"></a>容器：将操作系统层虚拟化，是一个标准的软件单元</h4><ul>
+<li><p>随处运行：容器可以将代码与配置文件和相关依赖库进行打包，从而确保在任何环境下的运行都是一致的。</p>
+</li>
+<li><p>高资源利用率：容器提供进程级的隔离，因此可以更加精细地设置 CPU 和内存的使用率，进而更好地利用服务器的计算资源。</p>
+</li>
+<li><p>快速扩展：每个容器都可作为单独的进程予以运行，并且可以共享底层操作系统的系统资源，这样一来可以加快容器的启动和停止效率。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th align="center">虚拟机</th>
+<th align="center">容器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>隔离级别</td>
+<td align="center">操作系统级</td>
+<td align="center">进程</td>
+</tr>
+<tr>
+<td>隔离策略</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/hypervisor/3353492?fr=aladdin">Hypervisor</a>（虚拟机监控器）</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Cgroup/4988200?fr=aladdin">Cgroups</a>（控制组群）</td>
+</tr>
+<tr>
+<td>系统资源</td>
+<td align="center">5 ～ 15%</td>
+<td align="center">0 ～ 5%</td>
+</tr>
+<tr>
+<td>启动时间</td>
+<td align="center">分钟级</td>
+<td align="center">秒级</td>
+</tr>
+<tr>
+<td>镜像存储</td>
+<td align="center">GB - TB</td>
+<td align="center">KB - MB</td>
+</tr>
+<tr>
+<td>集群规模</td>
+<td align="center">上百</td>
+<td align="center">上万</td>
+</tr>
+<tr>
+<td>高可用策略</td>
+<td align="center">备份、容灾、迁移</td>
+<td align="center">弹性、负载、动态</td>
+</tr>
+</tbody></table>
 <p><strong>参考资料</strong><br><a target="_blank" rel="noopener" href="https://www.ibm.com/cn-zh/topics/hypervisors?mhsrc=ibmsearch_a&mhq=hypervisor">IBM 虚拟机管理器</a><br><a target="_blank" rel="noopener" href="https://www.redhat.com/zh/topics/virtualization/what-is-a-hypervisor">RedHat 什么是虚拟机监控程序</a></p>
 
                 
@@ -424,9 +480,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/20/REST-API/" title="一文彻底弄懂REST API">
+                      <a href="/2022/08/12/%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E4%BB%8B%E7%BB%8D/" title="虚拟化技术的分类及介绍">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一文彻底弄懂REST API</span>
+                        <span class="hidden-mobile">虚拟化技术的分类及介绍</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
