@@ -26,7 +26,7 @@
 <meta property="og:description" content="Namespaces、CGroups、Containerruntime">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-01T11:24:19.325Z">
+<meta property="article:modified_time" content="2023-08-02T18:29:39.509Z">
 <meta property="article:author" content="Dark Lorder">
 <meta property="article:tag" content="Cloud Native">
 <meta name="twitter:card" content="summary_large_image">
@@ -269,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          5k 字
         
       </span>
     
@@ -280,7 +280,7 @@
         
         
         
-          38 分钟
+          42 分钟
         
       </span>
     
@@ -453,6 +453,24 @@
 <li><p>容器终止：当容器内的应用程序完成任务或被显式停止时，运行时负责清理资源并终止容器。</p>
 </li>
 </ul>
+<h4 id="容器技术"><a href="#容器技术" class="headerlink" title="容器技术"></a>容器技术</h4><p>借助于称之为 “容器运行时 Container Runtime” 的软件技术，在同一个内核之上生成多个彼此隔离的用户空间</p>
+<ul>
+<li>各用户空间可独立管理运行其内部进程</li>
+<li>每个用户空间 “自以为” 独占该内核及硬件资源</li>
+<li>每一个用户空间就叫一个容器</li>
+</ul>
+<p>需要将内核级的共享资源进行隔离，每个容器暴露的是系统接口</p>
+<ul>
+<li><p>依赖于内核中称为 “名称空间” 的技术进行</p>
+<p>名称空间是Linux内核特性，用于隔离部分系统资源，从而使得进程仅可访问同一名称空间中的相应资源；</p>
+<p>名称空间只能做到隔离，做不到资源的分配；</p>
+</li>
+<li><p>资源限制则依赖于由Google贡献的 “CGroups”</p>
+<p>cgroups(Control Groups) 是 linux 内核提供的一种机制，这种机制可以根据需求把一系列系统任务及其子任务整合(或分隔)到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。</p>
+</li>
+</ul>
+<p>支撑容器创建的功能是内置于内核当中的，需要通过系统调用来实现；用户空间虚拟化是内核的功能。</p>
+<p>每一个容器都是一组独立的名称空间，一组名称空间组合起来形成的。</p>
 
                 
               </div>
