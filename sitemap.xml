@@ -2,9 +2,135 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.darklorder.com/2022/07/24/hello-world/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/08/07/What-is-SRE/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/08/10/what-is-a-hypervisor/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2023/01/01/walk-in-your-own-time-zone/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/10/01/The-Eight-Fallacies-of-Distributed-Computing/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2023/07/24/Spend-money-to-buy-lessons/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/08/20/REST-API/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/07/25/Origin-or-hard-work/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2023/01/04/Life-and-work/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/01/Install-Docker/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/10/01/Cloud-native-white-paper/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/2022/09/30/Cloud-Native/</loc>
     
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/08/05/Cloud-Computing/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/03/Docker-basic-concepts/</loc>
+    
+    <lastmod>2023-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -20,33 +146,6 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2022/09/03/Docker-basic-concepts/</loc>
-    
-    <lastmod>2023-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/</loc>
-    
-    <lastmod>2023-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/07/24/hello-world/</loc>
-    
-    <lastmod>2023-07-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/2022/07/31/writing/</loc>
     
     <lastmod>2023-07-31</lastmod>
@@ -56,25 +155,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2022/08/10/what-is-a-hypervisor/</loc>
-    
-    <lastmod>2023-07-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/hypervisor/index.html</loc>
-    
-    <lastmod>2023-07-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/10/01/Cloud-native-white-paper/</loc>
     
     <lastmod>2023-07-31</lastmod>
     
@@ -110,70 +191,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2023/07/24/Spend-money-to-buy-lessons/</loc>
-    
-    <lastmod>2023-07-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2023/01/04/Life-and-work/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2023/01/01/walk-in-your-own-time-zone/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/07/25/Origin-or-hard-work/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/08/20/REST-API/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/10/01/The-Eight-Fallacies-of-Distributed-Computing/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/2022/08/06/Introduction-to-Cloud-Computing/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/09/01/Install-Docker/</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -200,27 +218,9 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2022/08/05/Cloud-Computing/</loc>
-    
-    <lastmod>2023-05-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/Computing/index.html</loc>
     
     <lastmod>2023-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/08/07/What-is-SRE/</loc>
-    
-    <lastmod>2022-08-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -265,7 +265,7 @@
 
   <url>
     <loc>https://www.darklorder.com/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -273,35 +273,35 @@
   
   <url>
     <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Cloud-Native/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Docker/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/SRE/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -310,35 +310,35 @@
   
   <url>
     <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Cloud-Native/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Docker/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/SRE/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Hypervisor/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <lastmod>2023-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
