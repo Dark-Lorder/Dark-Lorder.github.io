@@ -15,14 +15,14 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Dark Lorder">
+  <meta name="author" content="无产阶级没有版权">
   <meta name="keywords" content="">
   
     <meta name="description" content="云原生架构设计方法论——12因素应用程序图解，12 Factor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="12因素应用程序图解">
 <meta property="og:url" content="https://www.darklorder.com/2023/08/16/12-Factor-Apps/index.html">
-<meta property="og:site_name" content="Dark Lorder">
+<meta property="og:site_name" content="DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE">
 <meta property="og:description" content="云原生架构设计方法论——12因素应用程序图解，12 Factor">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.darklorder.com/img/202308161207731.jpeg">
@@ -43,8 +43,8 @@
 <meta property="og:image" content="https://img.darklorder.com/img/202308161208382.jpeg">
 <meta property="og:image" content="https://img.darklorder.com/img/202308161208669.jpeg">
 <meta property="article:published_time" content="2023-08-16T04:03:46.000Z">
-<meta property="article:modified_time" content="2023-08-16T04:15:52.420Z">
-<meta property="article:author" content="Dark Lorder">
+<meta property="article:modified_time" content="2023-08-16T06:36:44.815Z">
+<meta property="article:author" content="无产阶级没有版权">
 <meta property="article:tag" content="Cloud Native">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://img.darklorder.com/img/202308161207731.jpeg">
@@ -53,7 +53,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>12因素应用程序图解 - Dark Lorder</title>
+  <title>12因素应用程序图解 - DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -351,12 +351,12 @@
 <p><a target="_blank" rel="noopener" href="https://ngeninv.hashnode.dev/12-factor-app">12 Factor App (hashnode.dev)</a></p>
 <p><a target="_blank" rel="noopener" href="https://resources.sei.cmu.edu/asset_files/Presentation/2016_017_001_454665.pdf">12 Factor Apps: A Scorecard (cmu.edu)</a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://img.darklorder.com/img/202308161207731.jpeg" srcset="/img/loading.gif" lazyload></p>
-<p>12要素应用程序（12-Factor App）_早在2011年就由 Adam Wiggins 发布。</p>
+<p>12要素应用程序（12-Factor App）早在2011年就由 Adam Wiggins 发布。</p>
 <p>12要素应用程序是一套原则，一种软件工程的方法论，产出的代码，能够<strong>可靠地发布，快速的扩展，并以一致和可预知的方式</strong>维护。</p>
 <p>然而，这种方法论创建于十年前，云技术自最初创建以来已经取得了进步。</p>
-<p>为了使应用程序能够<strong>真正利用现代云基础设施和工具，并在云中蓬勃发展</strong>，而不是仅仅在云中生存，Kevin Hoffman 修订了最初的12个因素，并增加了三个额外的因素——15因素应用程序方法论: _<a target="_blank" rel="noopener" href="https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/">超越12因素应用程序</a>_。</p>
+<p>为了使应用程序能够<strong>真正利用现代云基础设施和工具，并在云中蓬勃发展</strong>，而不是仅仅在云中生存，Kevin Hoffman 修订了最初的12个因素，并增加了三个额外的因素——15因素应用程序方法论: <a target="_blank" rel="noopener" href="https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/">超越12因素应用程序</a>。</p>
 <p>12要素应用程序的原文，不太好理解。这里编译了一些资料，以图文的方式梳理如下。</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>12要素应用程序是由 Heroku 的开发人员定义的一种方法论，用于构建_软件即服务（SaaS）_或者_云原生（cloud-native）_的应用程序:</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>12要素应用程序是由 Heroku 的开发人员定义的一种方法论，用于构建软件即服务（SaaS）或者云原生（cloud-native）的应用程序:</p>
 <ul>
 <li>使用<strong>声明式（declarative）</strong>格式自动化安装，这样可以最大限度地减少新加入项目的开发人员的时间和成本</li>
 <li>与底层操作系统有一个<strong>整洁的契约（clean contract）</strong>，这样可以提供运行环境之间的<strong>最大可移植性（maximum portability）</strong></li>
@@ -515,7 +515,7 @@
 <p>云原生应用程序可以使用基于以角色为基础的访问控制(role-based access control，RBAC)来保护其端点。这些角色规定调用的客户端是否具有足够的权限，以便应用程序能够响应请求，并为审计需要帮助跟踪发出请求的人。</p>
 <p><strong>认证和授权要素的添加是为了强调云原生应用程序的安全性</strong>。在云环境中部署应用程序意味着应用程序可以跨越世界各地的许多数据中心传输，在多个容器中执行，并由几乎无限数量的客户端访问。</p>
 <p>不管这个应用程序是为企业、移动设备还是云服务而设计的，安全性都不应该是事后才考虑的问题。</p>
-<p>最后，是一份使用12因素评估应用程序的打分表，看看你的应用程序有几分。</p>
+<h2 id="12因素应用程序打分表"><a href="#12因素应用程序打分表" class="headerlink" title="12因素应用程序打分表"></a>12因素应用程序打分表</h2><p>最后，是一份使用12因素评估应用程序的打分表，看看你的应用程序有几分。</p>
 <table>
 <thead>
 <tr>
@@ -625,7 +625,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>Dark Lorder</div>
+          <div>无产阶级没有版权</div>
         </div>
       
       
@@ -660,6 +660,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/16/Cloud-Native-Glossary/" title="云原生词汇表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">云原生词汇表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

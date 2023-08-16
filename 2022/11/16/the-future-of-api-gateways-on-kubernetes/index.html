@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="无产阶级没有版权">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="关键要点 API 网关已从基本的转换器发展为适应市场需求的高级云网关，在管理和保护客户端与后端服务之间的 API 通信中发挥着关键作用。  尽管开源的 Kubernetes Gateway API 项目将 API 网关定位为基础设施中必不可少但可商业化的一部分，但全周期的 API 管理在推动云原生应用和服务方面仍然至关重要。  为了充分发挥云原生计算的潜力，传统的 API 管理架构必须重新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes 上 API 网关的未来">
+<meta property="og:url" content="https://www.darklorder.com/2022/11/16/the-future-of-api-gateways-on-kubernetes/index.html">
+<meta property="og:site_name" content="DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE">
+<meta property="og:description" content="关键要点 API 网关已从基本的转换器发展为适应市场需求的高级云网关，在管理和保护客户端与后端服务之间的 API 通信中发挥着关键作用。  尽管开源的 Kubernetes Gateway API 项目将 API 网关定位为基础设施中必不可少但可商业化的一部分，但全周期的 API 管理在推动云原生应用和服务方面仍然至关重要。  为了充分发挥云原生计算的潜力，传统的 API 管理架构必须重新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161506230.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161507504.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161507298.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161507971.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161508844.png">
+<meta property="article:published_time" content="2022-11-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-16T07:23:50.387Z">
+<meta property="article:author" content="无产阶级没有版权">
+<meta property="article:tag" content="Kubernetes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.darklorder.com/img/202308161506230.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Kubernetes 上 API 网关的未来 - DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.darklorder.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"430e0a359175764e7d11cf0ad4ece31e","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?430e0a359175764e7d11cf0ad4ece31e";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DK</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.darklorder.com/blog/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Kubernetes 上 API 网关的未来"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-16 00:00" pubdate>
+          2022年11月16日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Kubernetes 上 API 网关的未来</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<img src="https://img.darklorder.com/img/202308161506230.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<h2 id="关键要点"><a href="#关键要点" class="headerlink" title="关键要点"></a>关键要点</h2><ul>
+<li><p>API 网关已从基本的转换器发展为适应市场需求的高级云网关，在管理和保护客户端与后端服务之间的 API 通信中发挥着关键作用。</p>
+</li>
+<li><p>尽管开源的 Kubernetes Gateway API 项目将 API 网关定位为基础设施中必不可少但可商业化的一部分，但全周期的 API 管理在推动云原生应用和服务方面仍然至关重要。</p>
+</li>
+<li><p>为了充分发挥云原生计算的潜力，传统的 API 管理架构必须重新设计，以不仅满足 Kubernetes 和云原生环境的要求，而且还要充分利用它们提供的功能。</p>
+</li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>随着互联网和云计算的指数级增长，催生了更小、更分布式的应用程序，这些应用为高度动态的环境而设计，能够根据需要快速扩展或缩减。这些应用程序推动了对现代 API 管理产品架构的需求，这些架构可以利用云原生能力实现可伸缩性、弹性、敏捷性和成本效益。与此同时，云原生应用帮助推动 API 网关从简单转换器发展为推动数字化计划中不可或缺的高级中间件。</p>
+<p>与此同时，<strong>Kubernetes</strong> 已经成为现代分布式应用程序首选的开源容器编排系统，无论是部署在一个还是多个公共或私有云上。根据 2022 年全球 CNCF 调查<sup>[1]</sup>显示，89% 的 CNCF 最终用户正在使用或试验 Kubernetes。<strong>Kubernetes Gateway API</strong> 项目旨在通过定义声明性 API 来配置 Kubernetes 集群中的网关和入口点，以促进组织实施该技术。预计这一发展将使得 API 网关变得更加易于访问和产品化，尽管完整生命周期的 API 管理仍然对于推动云原生应用程序和服务至关重要。</p>
+<p>本文将探讨 API 网关如何演变、传统 API 网关在支持 Kubernetes 云原生环境方面的不足之处、当今的 API 网关需求、为什么 Envoy 是构建下一代 API 网关的最佳标准，以及基于 Kubernetes 的 API 管理的未来。</p>
+<h2 id="网关的演变"><a href="#网关的演变" class="headerlink" title="网关的演变"></a>网关的演变</h2><img src="https://img.darklorder.com/img/202308161507504.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>图1：网关的演变</p>
+<p>在探讨 API 网关是如何演变之前，让我们快速定义我们所说的 API 管理与 API 网关的含义。API 管理包括策略规划、设计、实施到监控 API 在其生命周期的每个阶段的端到端过程。API 网关是 API 管理基础设施中的一个专用组件，作为 API 请求的主要入口点，促进客户端和后端服务之间的通信。</p>
+<p>API 网关的演变可以分为九个不同的阶段，每个阶段都代表了它们能力的进步和变化。这些阶段反映了 API 网关为满足现代应用架构和 API 管理的不断发展的需求而进行的持续开发和适应。</p>
+<ul>
+<li><p><strong>早期的网关</strong>：作为转换器，使不同的网络架构之间的通信成为可能，并促进了不同系统之间的连接。</p>
+</li>
+<li><p><strong>代理服务器</strong>：包括 Apache HTTP Server 和 Squid 在内的代理服务器作为网关越来越受欢迎，可以跨多个端点管理流量，并提供缓存、安全和访问控制等功能。</p>
+</li>
+<li><p><strong>硬件负载均衡器</strong>：如 F5 Networks Big-IP，出现是为了优化性能并处理随着应用程序变得更加复杂而增加的用户需求。</p>
+</li>
+<li><p><strong>软件负载均衡器</strong>：包括 HAProxy，由于其强大的功能、性能和可靠性而成为了流行的选择。它提供了高级的负载均衡算法、会话持久性、健康检查和可伸缩性选项，使其非常适合处理大量的 API 流量。</p>
+</li>
+<li><p><strong>应用交付控制器（ADCs）</strong>：如 NGINX 和 Citrix ADC 作为优化应用性能和确保客户端和服务器之间的安全通信的高级网关出现。它们提供负载均衡、安全套接字层(SSL)和传输层安全性(TLS)终止、安全性、缓存和流量管理功能。</p>
+</li>
+<li><p><strong>SOAP 网关</strong>：随着 SOAP 和 web 服务 API 的并行发展，支持集成、协议转换和 SOAP 基础服务的安全性实施。</p>
+</li>
+<li><p><strong>API 网关</strong>：随着 web API 和面向服务的架构的崛起，作为访问 API 的中介并处理如路由、身份验证、速率限制和转换等任务而演变。它们在保护、监控和管理 API 流量中发挥着至关重要的作用，其中一些利用了 Netty 网络框架。API 网关进一步演变，以处理微服务架构中通信和路由的复杂性，与服务发现机制集成，实现动态路由、负载均衡和协议转换。</p>
+</li>
+<li><p><strong>微网关</strong>：随着微服务、边缘计算和物联网的崛起，越来越多地在网络边缘使用。它们将处理能力和连接性带到数据源附近，减少延迟和拥塞，同时实现数据聚合、本地处理和安全性实施。它们还促进了 IoT 设备与后端系统之间的通信。</p>
+</li>
+<li><p><strong>云原生 API 网关</strong>：云原生 API 网关的出现是为了管理云原生环境中的流量，利用 Kubernetes 等容器编排平台并采用云原生原则来实现可扩展性和弹性在云原生环境中，网关越来越多地结合人工智能和机器学习技术。</p>
+</li>
+</ul>
+<h2 id="API-网关的角色"><a href="#API-网关的角色" class="headerlink" title="API 网关的角色"></a>API 网关的角色</h2><img src="https://img.darklorder.com/img/202308161507298.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>图 2：API 网关概述</p>
+<p>在当今的技术环境中，API 网关的角色已经受到了其演变的显著影响。目前，API 网关作为 API 管理的核心，充当 API 请求的入口点，抽象出各种服务的服务质量(QoS)问题。它集成了各种 QoS 功能，包括安全性、速率限制、消息转换、请求路由、缓存和 API 洞察，以确保 API 请求的全面管理。</p>
+<p><strong>API 安全性</strong>至关重要，身份验证和授权起着关键作用。身份验证方法，如双向 TLS (mTLS)、Open Authorization (OAuth) 2.0 Tokens 和 API 密钥，以及通过授权范围进行的细粒度访问控制，增强了安全性。</p>
+<p><strong>API 速率限制</strong>确保用户遵循定义的策略公平使用。它防止滥用，保持一致的服务质量，并在 API 管理中促进透明度和责任。</p>
+<p><strong>缓存</strong>为 API 驱动的应用程序提供了显著的好处。通过减少后端负载、最小化延迟、优化带宽使用和提供对后端故障的弹性，它增强了性能、可伸缩性和弹性。</p>
+<p><strong>消息转换功能</strong>允许用户修改 API 请求，但在 API 网关上直接实施大量转换可能会影响性能。最佳实践是使用专为复杂消息转换设计的集成层。</p>
+<p><strong>请求路由</strong>涉及根据定义的规则和配置将传入的 API 请求引导到适当的后端服务，同时还结合了服务负载均衡、故障转移机制和 A&#x2F;B 测试。</p>
+<p><strong>API 洞察</strong>通过收集和发布数据进行分析和可视化，提供业务智能。</p>
+<p><strong>监控和可观察性</strong>涉及数据收集和分析，以获得 API 性能、可用性和使用情况的洞察。这些功能允许组织跟踪指标、检测异常并解决问题，确保 API 网关和底层 API 基础设施的高效运行和持续改进。</p>
+<p>现代 API 网关不仅支持 REST 服务，还包括对 GraphQL 服务、gRPC 服务和各种流服务的支持。每种类型的 API 从 API 网关获得不同的 QoS 处理。部署模式包括集中式模式，其中所有 API 一起进行缩放，以及分布式模式。API 管理器控制平面管理部署在不同环境中的网关，提供集中化的控制和配置。</p>
+<h2 id="云原生环境中的-API-管理"><a href="#云原生环境中的-API-管理" class="headerlink" title="云原生环境中的 API 管理"></a>云原生环境中的 API 管理</h2><p>Kubernetes 的采用推动了 API 网关的广泛使用，因为组织利用了容器化和微服务架构的好处。API 网关在基于 Kubernetes 的环境中实现了高效的 API 管理、可伸缩性和安全性，使其成为现代应用开发和部署中的关键组件。</p>
+<h3 id="在使用传统的-API-管理-Kubernetes-时存在的缺陷"><a href="#在使用传统的-API-管理-Kubernetes-时存在的缺陷" class="headerlink" title="在使用传统的 API 管理 Kubernetes 时存在的缺陷"></a>在使用传统的 API 管理 Kubernetes 时存在的缺陷</h3><p>尽管它们被广泛使用，但传统的 API 管理架构并不适合 Kubernetes 和其他云原生环境。它们具有将多个功能捆绑在一个应用程序中的单一设计。这使得难以独立缩放各个组件，相反，必须将整个应用程序一起缩放，这会浪费资源，并在处理高流量或增加的工作负载时导致性能问题。</p>
+<p>传统的 API 管理架构还依赖于与云原生环境不兼容的特定基础设施组件和技术。它们不仅具有更大的内存占用和更长的服务器启动时间；它们可能还需要专用硬件、特定软件配置或专有解决方案。这限制了它们利用云平台的优势，包括自动扩展、基础设施即代码实践和多云部署。由于 API 管理架构中存在一些外部依赖关系，API 网关在支持云原生应用程序方面也面临类似挑战。为了克服这些挑战并满足当前和未来云原生环境的需求，需要重新设计 API 网关。</p>
+<h3 id="Envoy-代理：重构-API-网关的关键"><a href="#Envoy-代理：重构-API-网关的关键" class="headerlink" title="Envoy 代理：重构 API 网关的关键"></a>Envoy 代理：重构 API 网关的关键</h3><p>Envoy<sup>[2]</sup> 已经成为重构 API 网关的首选解决方案，因为这个开源的边缘和服务代理专为云原生应用设计。此外，其适应性、可扩展性和强大的安全功能使其成为在各种云环境中管理 API 流量的绝佳选择。作为一个开源解决方案，Envoy 从全球的开发者那里获得了持续的改进，他们为代理提供了新功能、增强功能和错误修复，进一步增强了代理的健壮性和可靠性。</p>
+<p><strong>从 API 管理的角度看</strong>，Envoy 提供了如限速、响应缓存、CORS 处理、请求认证和授权等关键功能。它支持同时暴露 REST 和 gRPC 服务，并与 AWS 进行直接集成，以暴露 AWS Lambda 函数。该代理还提供了内置的可观察性功能，与开放遥测无缝集成，为监控和调试提供了全面的指标和跟踪数据。Envoy 代理使用 xDS API 进行配置，这些 API 允许动态配置、服务发现、流量路由和代理的运行时控制。通过利用 xDS API，Envoy 可以轻松地进行设置和修改，以满足不断变化的需求。</p>
+<p><strong>Envoy 代理主要采用两种部署模式</strong>：边车代理模式和前端代理模式。在边车代理模式中，Envoy 作为 SOA 架构中内部流量的通信总线。它通常用作服务网格中的边车，管理网络流量并与其代理的服务并行。Envoy 的轻量级核心和强大的功能，如负载均衡和服务发现，使其成为 Istio 等服务网格实现的热门选择。</p>
+<p>在前端代理模式中，Envoy 在 Kubernetes Ingress 控制器中使用，将服务暴露给外部消费者。一些 Ingress 控制器是基于 Envoy 构建的，利用其核心功能。Envoy 的灵活配置模型和功能集也使其成为 API 网关的理想选择。大多数现代 API 网关都是基于 Envoy 代理构建的，该代理作为基本框架。</p>
+<h3 id="云原生-API-管理架构"><a href="#云原生-API-管理架构" class="headerlink" title="云原生 API 管理架构"></a>云原生 API 管理架构</h3><p>基于 Envoy 代理的 API 网关在增强整体 API 管理架构中起到了关键作用，因为它们利用了云原生技术来有效地管理 API，同时确保了可扩展性和弹性。在这里，API 管理架构基于微服务原则、容器化和使用 Kubernetes 的容器编排，为云原生环境中的高效 API 管理提供了基础设施。</p>
+<p>云原生 API 管理架构包括两个独特的平面：<strong>控制平面</strong>和<strong>数据平面</strong>。控制平面是命令中心，执行 API 管理任务和 API 密钥生成。数据平面作为 API 调用的网关，将创建的 API 暴露给公共或私有消费者。该架构设计为高度可扩展，允许单个控制平面管理多个数据平面。这使得无缝的 API 网关联邦成为可能，并促进了跨多个云提供商或本地数据中心的 API 管理。为了增强可扩展性和弹性，该架构利用了 Kubernetes 的基本功能，如自动缩放和自我修复，以确保最佳性能和可靠性。</p>
+<img src="https://img.darklorder.com/img/202308161507971.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>图 3：API 管理的控制平面和数据平面</p>
+<h2 id="Envoy-网关项目与-API-标准化"><a href="#Envoy-网关项目与-API-标准化" class="headerlink" title="Envoy 网关项目与 API 标准化"></a>Envoy 网关项目与 API 标准化</h2><p>在 2022 年，Envoy 的创建者 Matt Klein 推出了一个名为 Envoy Gateway<sup>[3]</sup> 的新项目，专门针对 API 网关。Envoy 已经具备了构建 API 网关所需的组件，包括代理层；用于网络流量过滤、路由和处理的可配置过滤器架构；以及用于向 Envoy 代理传输数据的 xDS API。开源的 Envoy 网关项目增加了一个管理层，用于处理 Envoy 代理作为独立网关或作为 Kubernetes 管理的 API 网关。</p>
+<p>该项目的目标是提供一个简化的 API 层和部署模型，专注于更简单的用例。它还旨在将各种 CNCF API 网关项目整合到一个公共核心中，使供应商能够在 Envoy 和 Envoy Gateway 之上构建增值解决方案。通过促进社区合作，该项目还旨在消除在开发基本 API 网关功能方面的重复努力，使供应商能够更加专注于 API 管理功能。这种统一努力有可能提高效率并鼓励 API 网关领域的创新。</p>
+<p>Envoy 网关项目主要基于 Kubernetes Gateway API<sup>[4]</sup>，该 API 定义了如何将 Kubernetes 服务暴露给外部世界。它利用 Kubernetes CRD 定义，如 <code>GatewayClass</code>、<code>Gateway</code>、<code>HTTPRoute</code>、<code>TCPRoute</code> 等来配置 API 网关。CRD 描述了诸如流量分割、请求路由、重定向、重写和 TLS 处理等重要功能。此外，还可以将各种策略与 API 网关或特定 API 路径关联。</p>
+<p>通过采用 Kubernetes Gateway API 作为基础，供应商可以灵活地在其首选的技术栈上开发自己的实现，并且可以利用 API 规范提供的扩展点来包含供应商特定的功能。这种方法促进了共享、标准化的 API 规范的采用，从而促进了 API 网关之间的互操作性，提高了 API 网关的一致性，并为未来的创新打开了新的可能性。</p>
+<h2 id="Kubernetes-上的-API-管理的未来"><a href="#Kubernetes-上的-API-管理的未来" class="headerlink" title="Kubernetes 上的 API 管理的未来"></a>Kubernetes 上的 API 管理的未来</h2><p>API 管理在动态的 API 环境中起着至关重要的作用，随着 API 标准化的推进，API 网关将成为基础设施的基本元素。这一变化将使开发人员免于直接管理网关及其相关的复杂性，使他们可以将注意力集中在构建和维护 API 以及其他核心开发任务上。因此，重点转向 API 管理，该管理涵盖了一系列基本功能。</p>
+<ul>
+<li><p><strong>API 生命周期管理</strong>使 API 的生命周期得以规划，允许自定义事件和生命周期变更的利益相关者授权。</p>
+</li>
+<li><p><strong>API 治理</strong>建立了流程和政策，以确保有效的 API 开发、管理，并符合组织目标和标准。</p>
+</li>
+<li><p><strong>API 市场</strong>作为一个在线平台，供开发人员发现、访问和管理 API。它提供文档、目录、SDK、测试工具、社区支持和货币化选项。</p>
+</li>
+<li><p><strong>API 版本管理</strong>涉及管理不同的 API 版本，以适应变化，同时保持向后兼容性。</p>
+</li>
+<li><p><strong>API 产品化</strong>将 API 视为可销售的产品，应用产品管理原则以满足开发者和业务需求。这包括创建用户友好的体验和实施货币化策略。</p>
+</li>
+<li><p><strong>API 洞察</strong>提供有价值的信息，通过分析使用情况、性能和行为，使得可以进行数据驱动的决策，以增强 API 体验。</p>
+</li>
+</ul>
+<p>为了充分利用云原生生态系统的优势，许多这些功能都需要重新设计。这将涉及与 Kubernetes 上可用的各种第三方服务的无缝集成，以实现更全面和强大的 API 管理解决方案。</p>
+<p>此外，采用开源分发模式对企业来说将是一个关键因素。开源产品鼓励社区参与和适应，促进生态系统内的合作与创新。拥抱开源还确保了 API 管理解决方案能够从多元化社区的集体知识和贡献中受益，从而实现持续改进和演进。</p>
+<h2 id="单一控制平面的-API-网关"><a href="#单一控制平面的-API-网关" class="headerlink" title="单一控制平面的 API 网关"></a>单一控制平面的 API 网关</h2><img src="https://img.darklorder.com/img/202308161508844.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<p>图 4：用于不同 API 网关实现的单一控制平面</p>
+<p>API 标准化将 API 网关转化为一种商品，为包含 API 管理和发现的统一控制平面铺平了道路。与此同时，数据平面可以由来自不同供应商的一个或多个 API 网关实现组成。这种范式转变带来了许多含义和机会。</p>
+<ul>
+<li><p><strong>供应商中立性和灵活性</strong>：通过使用能够管理来自不同供应商的多个网关的单一控制平面，组织实现了供应商中立性和增强的灵活性。这使他们能够为每个独特的用例或环境选择最合适的网关解决方案。通过接受多个供应商，组织可以利用不同供应商提供的特定优势和优点，避免供应商锁定，并培育一个更加适应的生态系统。</p>
+</li>
+<li><p><strong>互操作性和标准化</strong>：采用单一控制平面促进了不同网关之间的互操作性和标准化。通过遵循共享的 API、协议和数据格式，控制平面使来自不同供应商的网关能够进行无缝通信和管理。这促进了配置、策略和安全措施的一致性，从而提高了 API 基础设施的稳定性和可靠性。</p>
+</li>
+<li><p><strong>生态系统扩展和创新</strong>：单一控制平面管理来自多个供应商的网关，促进了多样化的生态系统并刺激了创新。它使组织能够接受和整合来自新兴供应商的新网关解决方案，而不会对现有基础设施造成中断。这种健康的供应商之间的竞争驱动了创新，扩展了可用选项的范围，并使组织能够使用更广泛的尖端解决方案来满足其 API 管理需求。</p>
+</li>
+<li><p><strong>成本优化</strong>：单一控制平面管理来自不同供应商的网关，使组织有灵活性选择与其特定要求和预算考虑相一致的经济有效的网关解决方案。这种自由使企业能够优化其支出，从其 API 管理基础设施中提取最大价值，并做出与其特定需求相一致的明智决策。</p>
+</li>
+<li><p><strong>简化的管理和操作</strong>：组织可以集中配置、监控和控制其 API 网关，消除了单独管理不同网关的复杂性。这种集中化方法提高了管理效率，简化了操作，并最大限度地减少了潜在的不一致性。由于网关遵循相同的 API 标准化，因此在 API 网关解决方案之间进行迁移变得更加容易。这简化了从一个网关解决方案过渡到另一个网关解决方案的过程，确保了对现有基础设施的平滑整合和减少了潜在的中断。</p>
+</li>
+</ul>
+<p>总之，当 API 网关成为一种商品，并且单一控制平面管理来自不同供应商的多个网关时，团队将获得供应商中立性、简化的管理、更大的互操作性、成本优化、增强的安全性和更容易的生态系统扩展的好处。这种汇聚还将使企业能够利用不同网关解决方案的优势，简化操作，推动创新，并优化其 API 管理的实践。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1]2022 年全球 CNCF 调查: <a target="_blank" rel="noopener" href="https://www.cncf.io/reports/cncf-annual-survey-2022/#findings">https://www.cncf.io/reports/cncf-annual-survey-2022/#findings</a></p>
+<p>[2]Envoy: <a target="_blank" rel="noopener" href="https://www.envoyproxy.io/">https://www.envoyproxy.io/</a></p>
+<p>[3]Envoy Gateway: <a target="_blank" rel="noopener" href="https://gateway.envoyproxy.io/">https://gateway.envoyproxy.io/</a></p>
+<p>[4]Kubernetes Gateway API: <a target="_blank" rel="noopener" href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a></p>
+<p><strong>参考资料</strong><br><a target="_blank" rel="noopener" href="https://wso2.com/library/blogs/the-future-of-api-gateways-on-kubernetes/">The Future of API Gateways on Kubernetes</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kubernetes/" class="category-chain-item">Kubernetes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Kubernetes/">#Kubernetes</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kubernetes 上 API 网关的未来</div>
+      <div>https://www.darklorder.com/2022/11/16/the-future-of-api-gateways-on-kubernetes/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>无产阶级没有版权</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月16日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - DK">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/01/walk-in-your-own-time-zone/" title="走在自己的时区里">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">走在自己的时区里</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/15/why-gateway-api-is-the-future-of-ingress-and-mesh/" title="Gateway API：Kubernetes 和服务网格入口中网关的未来">
+                        <span class="hidden-mobile">Gateway API：Kubernetes 和服务网格入口中网关的未来</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"8c8150dbe84124d5f79c","clientSecret":"05cc827cbe693a3de0490acd81ee0ea7fe8b3d38","repo":"blogtalk","owner":"Dark-Lorder","admin":["Dark-Lorder"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://gitalk.dk-proxy.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'edcb50d2cbe5a604ef0209f35c5dd449'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022020667号-1
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/timeDate.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

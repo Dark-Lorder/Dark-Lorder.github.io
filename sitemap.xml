@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.darklorder.com/2022/09/07/Docker-data-volume/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/06/Docker-Images/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/11/16/the-future-of-api-gateways-on-kubernetes/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/11/15/why-gateway-api-is-the-future-of-ingress-and-mesh/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2023/08/16/Cloud-Native-Glossary/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2023/08/16/12-Factor-Apps/</loc>
+    
+    <lastmod>2023-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/2022/11/01/troubleshooting-deployments/</loc>
     
     <lastmod>2023-08-16</lastmod>
@@ -21,15 +84,6 @@
   
   <url>
     <loc>https://www.darklorder.com/Kubernetes/index.html</loc>
-    
-    <lastmod>2023-08-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2023/08/16/12-Factor-Apps/</loc>
     
     <lastmod>2023-08-16</lastmod>
     
@@ -83,24 +137,6 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2022/09/06/Docker-Images/</loc>
-    
-    <lastmod>2023-08-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/09/07/Docker-data-volume/</loc>
-    
-    <lastmod>2023-08-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/2022/09/08/Docker-Networking/</loc>
     
     <lastmod>2023-08-09</lastmod>
@@ -122,15 +158,6 @@
     <loc>https://www.darklorder.com/2022/09/30/Cloud-Native/</loc>
     
     <lastmod>2023-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/</loc>
-    
-    <lastmod>2023-08-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -430,14 +457,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
+    <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
     <lastmod>2023-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
+    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
     <lastmod>2023-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -481,14 +508,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
+    <loc>https://www.darklorder.com/categories/Hypervisor/</loc>
     <lastmod>2023-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Hypervisor/</loc>
+    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
     <lastmod>2023-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

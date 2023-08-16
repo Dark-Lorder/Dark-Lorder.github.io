@@ -15,14 +15,14 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Dark Lorder">
+  <meta name="author" content="无产阶级没有版权">
   <meta name="keywords" content="">
   
     <meta name="description" content="Docker Images运行容器时，基于Mount名称空间建立的隔离文件系统中的内容来自镜像  Docker镜像是一个特殊的文件系统，它必须包含运行应用程序所需的一切——所有依赖项、配置、脚本、二进制文件等  镜像还包含容器的其他配置，例如环境变量、要运行的默认命令、和其他元数据  通常，镜像还要定义默认启动的应用   Docker镜像由许多层（Layer）叠加而成  依赖于特殊的存储驱动，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker镜像">
 <meta property="og:url" content="https://www.darklorder.com/2022/09/06/Docker-Images/index.html">
-<meta property="og:site_name" content="Dark Lorder">
+<meta property="og:site_name" content="DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE">
 <meta property="og:description" content="Docker Images运行容器时，基于Mount名称空间建立的隔离文件系统中的内容来自镜像  Docker镜像是一个特殊的文件系统，它必须包含运行应用程序所需的一切——所有依赖项、配置、脚本、二进制文件等  镜像还包含容器的其他配置，例如环境变量、要运行的默认命令、和其他元数据  通常，镜像还要定义默认启动的应用   Docker镜像由许多层（Layer）叠加而成  依赖于特殊的存储驱动，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.darklorder.com/img/202111292153842.png">
@@ -37,9 +37,24 @@
 <meta property="og:image" content="https://img.darklorder.com/img/202308111438925.png">
 <meta property="og:image" content="https://img.darklorder.com/img/202308111439188.png">
 <meta property="og:image" content="https://img.darklorder.com/img/202308111440457.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161527037.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161527930.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161527822.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161527361.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161527441.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161528058.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161528556.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161528219.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538342.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538353.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538349.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538303.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538307.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538321.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202308161538202.png">
 <meta property="article:published_time" content="2022-09-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-11T06:44:37.438Z">
-<meta property="article:author" content="Dark Lorder">
+<meta property="article:modified_time" content="2023-08-16T07:47:58.842Z">
+<meta property="article:author" content="无产阶级没有版权">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://img.darklorder.com/img/202111292153842.png">
@@ -48,7 +63,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Docker镜像 - Dark Lorder</title>
+  <title>Docker镜像 - DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -282,7 +297,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.4k 字
+          11k 字
         
       </span>
     
@@ -293,7 +308,7 @@
         
         
         
-          79 分钟
+          92 分钟
         
       </span>
     
@@ -406,7 +421,7 @@
 <li><p>配置中心：appollo nacoss</p>
 </li>
 </ul>
-<h3 id="什么是镜像层？"><a href="#什么是镜像层？" class="headerlink" title="什么是镜像层？"></a>什么是镜像层？</h3><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需要的所有内容，包括代码，运行时（一个程序在运行或者在被执行的依赖）、库，环境变量和配置文件。</p>
+<h3 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h3><h3 id="什么是镜像层？"><a href="#什么是镜像层？" class="headerlink" title="什么是镜像层？"></a>什么是镜像层？</h3><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需要的所有内容，包括代码，运行时（一个程序在运行或者在被执行的依赖）、库，环境变量和配置文件。</p>
 <p>每个镜像都由多个镜像层组成。这些镜像层都是只读的，从下往上，以栈的方式组合在一起，组成镜像的根文件系统。</p>
 <h3 id="什么是容器层？"><a href="#什么是容器层？" class="headerlink" title="什么是容器层？"></a>什么是容器层？</h3><p>当容器启动时，一个新的可写层被加载到镜像的顶部。 这一层通常被称作容器层（Container layer），容器层之下的都叫镜像层（Image layers）。所有对容器的改动，无论添加、删除、还是修改文件都只会发生在容器层中。</p>
 <p>每个容器运行时都有自己的容器层，保存容器运行相关数据（所有文件变化数据），因为镜像层是只读的，所以多个容器可以共享同一个镜像。删除容器时，Docker Daemon会删除容器层，保留镜像层。</p>
@@ -490,12 +505,21 @@
 <p>如图所示，当需要对镜像中的文件进行修改时，会将文件复制到容器层进行修改，上层文件会覆盖原始镜像文件。<strong>注意：该文件存在于容器层，容器重启之后容器层重新建立，上一次容器运行时对于文件的修改全部丢失！</strong></p>
 <p>只有当需要修改时才复制一份数据，这种特性被称作Copy-on-Write。可见，容器层保存的是镜像变化的部分，不会对镜像本身进行任何修改。</p>
 <h4 id="内容寻址原理"><a href="#内容寻址原理" class="headerlink" title="内容寻址原理"></a>内容寻址原理</h4><p>在docker中，内容寻址就是根据文件内容来索引对应的镜像和镜像层，实际上就是对于镜像层的内容计算和校验后生成一个内容哈希值，并作为这个镜像层的唯一ID。在构造镜像时，根据这个ID来索引镜像层。</p>
-<h3 id="docker-Overlay2-文件系统原理"><a href="#docker-Overlay2-文件系统原理" class="headerlink" title="docker Overlay2 文件系统原理"></a>docker Overlay2 文件系统原理</h3><blockquote>
+<h3 id="Docker-Overlay2-文件系统原理"><a href="#Docker-Overlay2-文件系统原理" class="headerlink" title="Docker Overlay2 文件系统原理"></a>Docker Overlay2 文件系统原理</h3><blockquote>
 <p>overlayFS是被称为联合文件系统的其中一个解决方案。在2014年，发布了第一个版本并且合并到了Linux的内核3.18版本中，此时，在docker被称为是overlay文件驱动。后来在Linux 内核4.0 版本中进行了改进，称为overlay2。（overlay存在诸多性能和不稳定的问题，不推荐使用overlay，直接使用默认的overlay2即可）</p>
 </blockquote>
-<p><strong>overlay2工作原理</strong></p>
+<h4 id="overlay2工作原理"><a href="#overlay2工作原理" class="headerlink" title="overlay2工作原理"></a><strong>overlay2工作原理</strong></h4><p><img src="https://img.darklorder.com/img/202308161527037.png" srcset="/img/loading.gif" lazyload></p>
+<p>overlayfs 通过三个目录：lower 目录、upper 目录、以及 work 目录实现，其中 lower 目录可以是多个，work 目录为工作基础目录，挂载后内容会被清空，且在使用过程中其内容用户不可见，最后联合挂载完成给用户呈现的统一视图称为为 merged 目录。</p>
+<ul>
+<li>lowerdir对应底层文件系统，是能被上层文件系统upperdir所共享的只读层</li>
+<li>workdir则可以理解为overlay2运作的一个工作目录，用于完成copy-on-write等操作</li>
+<li>overlay2运作时（也就是容器启动时），会将lowerdir、upperdir和workdir联合挂载到merged目录，为使用者提供一个“<strong>统一视图</strong>”</li>
+</ul>
+<p>查看 <code>/var/lib/docker/overlay2/容器ID</code>目录结构，使用<code>mount | grep overlay</code>查看overlay的挂载情况。如图，确实此目录下的link、lower、work、diff等目录是通过挂载多个目录后，合并显示在一起的。<br><img src="https://img.darklorder.com/img/202308161527930.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Overlay2-是如何存储文件的？"><a href="#Overlay2-是如何存储文件的？" class="headerlink" title="Overlay2 是如何存储文件的？"></a><strong>Overlay2 是如何存储文件的？</strong></h3><h4 id="镜像怎么存储的？"><a href="#镜像怎么存储的？" class="headerlink" title="镜像怎么存储的？"></a><strong>镜像怎么存储的？</strong></h4><p>1、为了更好的演示，使用一个纯净的环境：没有任何镜像和容器，&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2目录也是空的<br><img src="https://img.darklorder.com/img/202308161527822.png" srcset="/img/loading.gif" lazyload><br>2、拉取一个nginx镜像，观察拉取过程：可以看到镜像一共被分为6层拉取。<br><img src="https://img.darklorder.com/img/202308161527361.png" srcset="/img/loading.gif" lazyload><br>3、&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2&#x2F; 目录下也多了6个文件夹<br><img src="https://img.darklorder.com/img/202308161527441.png" srcset="/img/loading.gif" lazyload><br>4、首先来查看一下l目录，可以看到l目录是一堆软连接，把一些较短的随机串软连到镜像层的 diff 文件夹下，这样做是为了避免达到mount命令参数的长度限制<br><img src="https://img.darklorder.com/img/202308161528058.png" srcset="/img/loading.gif" lazyload><br>5、<code>docker image inspect nginx</code> 查看nginx镜像的信息，每个镜像都会有一个<code>GraphDriver.Data</code>信息，这个信息指示了镜像是怎么存的<br><img src="https://img.darklorder.com/img/202308161528556.png" srcset="/img/loading.gif" lazyload><br>6、将这6个文件夹全部展开，可以看到目录结构几乎都是一致的，需要重点关注的是diff文件夹和lower文件。<br>可以看到<code>5160f86fbe7acce3826ed5c7d1acdb351b931d67978b1c91138d86b7eef8d0ab</code>文件夹中不存在lower文件，说明它是最底层的，等于是根镜像，即docker pull时下载的第一层。<br>同时，<code>diff</code>文件夹下的文件，正是Linux文件目录结构。说明在nginx的dockerfile中，肯定有FROM centos的操作。<br><img src="https://img.darklorder.com/img/202308161528219.png" srcset="/img/loading.gif" lazyload><br><strong>实例说明：<code>Dockerfile</code>的每一个命令都可能引起了系统的变化，它的每一个变化都会记录一层diff文件。</strong></p>
+<h4 id="容器怎么存储的？"><a href="#容器怎么存储的？" class="headerlink" title="容器怎么存储的？"></a><strong>容器怎么存储的？</strong></h4><p>1、当前环境有一个nginx镜像，&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2&#x2F; 目录下只有镜像层的存储目录。<br><img src="https://img.darklorder.com/img/202308161538342.png" srcset="/img/loading.gif" lazyload><br>2、docker run 启动一个容器<br><img src="https://img.darklorder.com/img/202308161538353.png" srcset="/img/loading.gif" lazyload><br>3、查看&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2&#x2F; 目录，发现新增了两个目录：其中带<code>-init</code>的目录是只读的；没有init的容器目录才是容器的读写目录<br><img src="https://img.darklorder.com/img/202308161538349.png" srcset="/img/loading.gif" lazyload><br>4、<code>link</code>和<code>lower</code>文件与镜像层的功能一致，<code>link</code>文件内容为该容器层的<code>短 ID</code>，<code>lower</code>文件为该层的所有父层镜像的<code>短 ID</code>。<code>diff</code>目录为容器的读写层，容器内修改的文件都会在<code>diff</code>中出现，<code>merged</code>目录为分层文件联合挂载后的结果，也是容器内的工作目录。<br><img src="https://img.darklorder.com/img/202308161538303.png" srcset="/img/loading.gif" lazyload><br><img src="https://img.darklorder.com/img/202308161538307.png" srcset="/img/loading.gif" lazyload><br>5、根据 docker inspect nginx获取到的<code>GraphDriver.Data</code>数据显示，merged目录，是lowerDir各个目录合并UpperDir各个目录后的结果。<br><img src="https://img.darklorder.com/img/202308161538321.png" srcset="/img/loading.gif" lazyload><br>6、当我们进入容器创建文件时，文件也会出现在这里。<br><img src="https://img.darklorder.com/img/202308161538202.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>结论：</strong> overlay2将镜像层和容器层都放在单独的目录，并且有唯一 ID，每一层仅存储发生变化的文件，最终使用联合挂载技术将容器层和镜像层的所有文件统一挂载到容器中，使得容器中看到完整的系统文件。</p>
 <p><strong>参考资料</strong><br><a target="_blank" rel="noopener" href="http://static.kancloud.cn/chunyu/php_basic_knowledge/3083129">docker·PHP知识总结·看云</a></p>
-<p><a href="https://">XXXX</a></p>
 
                 
               </div>
@@ -548,7 +572,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>Dark Lorder</div>
+          <div>无产阶级没有版权</div>
         </div>
       
       
