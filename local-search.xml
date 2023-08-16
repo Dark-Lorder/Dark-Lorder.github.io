@@ -4,6 +4,57 @@
   
   
   <entry>
+    <title>12因素应用程序图解</title>
+    <link href="/2023/08/16/12-Factor-Apps/"/>
+    <url>/2023/08/16/12-Factor-Apps/</url>
+    
+    <content type="html"><![CDATA[<p>云原生架构设计方法论——12因素应用程序图解，12 Factor</p><span id="more"></span><h2 id="严重参考"><a href="#严重参考" class="headerlink" title="严重参考"></a>严重参考</h2><p><a href="https://resources.sei.cmu.edu/asset_files/Presentation/2016_017_001_454665.pdf">The Twelve-Factor App （简体中文） (12factor.net)</a></p><p><a href="https://www.redhat.com/architect/12-factor-app">An illustrated guide to 12 Factor Apps | Enable Architect (redhat.com)</a></p><p><a href="https://developer.ibm.com/articles/creating-a-12-factor-application-with-open-liberty/">Creating cloud-native applications: 12-factor applications – IBM Developer</a></p><p><a href="https://ngeninv.hashnode.dev/12-factor-app">12 Factor App (hashnode.dev)</a></p><p><a href="https://resources.sei.cmu.edu/asset_files/Presentation/2016_017_001_454665.pdf">12 Factor Apps: A Scorecard (cmu.edu)</a></p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://img.darklorder.com/img/202308161207731.jpeg"></p><p>12要素应用程序（12-Factor App）_早在2011年就由 Adam Wiggins 发布。</p><p>12要素应用程序是一套原则，一种软件工程的方法论，产出的代码，能够<strong>可靠地发布，快速的扩展，并以一致和可预知的方式</strong>维护。</p><p>然而，这种方法论创建于十年前，云技术自最初创建以来已经取得了进步。</p><p>为了使应用程序能够<strong>真正利用现代云基础设施和工具，并在云中蓬勃发展</strong>，而不是仅仅在云中生存，Kevin Hoffman 修订了最初的12个因素，并增加了三个额外的因素——15因素应用程序方法论: _<a href="https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/">超越12因素应用程序</a>_。</p><p>12要素应用程序的原文，不太好理解。这里编译了一些资料，以图文的方式梳理如下。</p><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>12要素应用程序是由 Heroku 的开发人员定义的一种方法论，用于构建_软件即服务（SaaS）_或者_云原生（cloud-native）_的应用程序:</p><ul><li>使用<strong>声明式（declarative）</strong>格式自动化安装，这样可以最大限度地减少新加入项目的开发人员的时间和成本</li><li>与底层操作系统有一个<strong>整洁的契约（clean contract）</strong>，这样可以提供运行环境之间的<strong>最大可移植性（maximum portability）</strong></li><li>适合在<strong>现代云平台（cloud platform）</strong>上<strong>部署（deployment）</strong>，这样可以除去服务器和系统管理；</li><li>在开发和生产环境之间<strong>最小化分歧（minimize divergence）</strong>，这样可以支持最高敏捷程度的<strong>持续部署（continuous deployment）</strong></li><li>可以在不对工具、架构或开发实践进行重大更改的情况下进行<strong>扩展（scale up）</strong></li></ul><p><a href="https://12factor.net/">12因素</a></p><ol><li>One codebase, one application - 一个代码库，一个应用程序</li><li>Dependency management - 依赖管理</li><li>Design, build, release, and run - 设计、构建、发布和运行</li><li>Configuration, credentials, and code - 配置、证书和代码</li><li>Logs - 日志</li><li>Disposability - 易处理</li><li>Backing services - 后端服务</li><li>Environment parity - 环境等价</li><li>Administrative processes - 管理进程</li><li>Port binding - 端口绑定</li><li>Stateless processes - 无状态进程</li><li>Concurrency - 并发性</li></ol><p>为了云原生应用程序而<a href="https://developer.ibm.com/articles/15-factor-applications/">新增加3个因素</a>：</p><ol><li>API first - API 优先</li><li>Telemetry - 遥测</li><li>Authentication and authorization - 认证和授权</li></ol><h2 id="1-Codebase"><a href="#1-Codebase" class="headerlink" title="1. Codebase"></a>1. Codebase</h2><p><strong>1. 基准代码</strong></p><blockquote><p>One codebase tracked in revision control, many deploys<br>一份基准代码记录在版本控制中，多份部署</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207746.jpeg"></p><p><strong>基准代码</strong>原则：所有与应用程序相关的资产，包括源代码、配置脚本和配置设置，都存储在一个可供开发人员、测试人员和系统管理人员访问的源代码仓库中。</p><p>所有自动化脚本都可以访问源代码仓库，这是持续集成&#x2F;持续交付（Continuous Integration&#x2F;Continuous Delivery，CI&#x2F;CD）过程的一部分，这些过程是企业软件开发生命周期（Software Development Lifecycle，SDLC）的一部分。</p><p><strong>云原生应用程序，必须始终由单个基准代码组成，且跟踪在版本控制系统中。</strong>基准代码是一个源代码仓库或一组存储库，它们共享一个公共根，用于生成任意数量的不可变发行版。应用程序和基准代码之间应该存在<strong>1:1</strong>的关系，但应用程序的基准代码和部署之间应该存在<strong>一对多</strong>的关系。</p><p>这个单独的基准代码有助于支持开发团队之间的协作，并有助于实现应用程序的正确版本控制。</p><p>Git是目前最常见的版本控制工具之一。</p><h2 id="II-Dependencies"><a href="#II-Dependencies" class="headerlink" title="II. Dependencies"></a>II. Dependencies</h2><p><strong>2. 依赖关系</strong></p><blockquote><p>Explicitly declare and isolate dependencies<br>显式声明和隔离依赖关系</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207939.jpeg"></p><p><strong>依赖关系</strong>原则：只有与应用程序的用途唯一相关的代码存储在源代码控制系统中。</p><p>外部构件，如 Node.js 的 package、Java 的 Jar、NET 的 dll，在开发、测试和生产运行时，都应该引用自被加载到内存中的依赖关系清单。需要避免将构件和源代码一起存储在源代码仓库中。</p><p><strong>云原生应用程序永远不能依赖于系统级包的隐式存在。</strong>这就是这个要素所关注的——鼓励显式声明和隔离应用程序的依赖关系。这有助于提供开发和生产环境之间的一致性，简化应用程序新手开发人员的设置，并支持云平台之间的可移植性。</p><p>大多数当代编程语言都有管理这些依赖关系的工具或工具。这些工具有助于简化依赖管理固有的复杂性，使开发人员能够声明他们的依赖关系，然后让工具负责实际确保这些依赖关系得到满足。</p><h2 id="III-Config"><a href="#III-Config" class="headerlink" title="III. Config"></a>III. Config</h2><p>3. <strong>配置</strong></p><blockquote><p>Store configuration in the environment<br>在环境中存储配置</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207372.jpeg"></p><p><strong>配置</strong>原则：配置信息以环境变量或独立配置文件中定义的设置，注入到各种运行环境中。在某些情况下，允许在代码中存储可以直接被覆盖的默认设置，例如端口号、依赖 URL，但是 DEBUG 等状态设置应该单独存在并在部署时进行覆盖。</p><p>外部配置文件的好例子是 Java properties文件、 Kubernetes manifest文件或 docker-compose.yml 文件。</p><p><strong>云原生应用程序不应该关心它在什么环境中运行，我们也不应该需要改变应用程序来在不同的环境中运行它。</strong>将这些配置值存储在环境变量中被认为是外化此配置的最佳实践。这种方法有助于简化应用程序在多个环境中的部署，降低证书和密码泄漏的风险，并支持更有效的发布管理。</p><h2 id="IV-Backing-Services"><a href="#IV-Backing-Services" class="headerlink" title="IV. Backing Services"></a>IV. Backing Services</h2><p><strong>4. 后端服务</strong></p><blockquote><p>Treat backing services as attached resources<br>将后端服务视为附加资源</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207292.jpeg"></p><p><strong>后端服务</strong>原则：鼓励架构师将外部组件，如数据库、电子邮件服务器、消息代理以及可由系统人员提供和维护的独立服务作为附加资源。将资源视为后端服务可以提高软件开发生命周期(SDLC)中的灵活性和效率。</p><p><strong>云原生应用程序应声明其对给定后端服务的需求，但允许云环境执行实际的资源绑定。</strong>应用程序与其后端服务的绑定应该通过外部配置完成。应该可以随意附加和分离应用程序的后端服务，而不需要重新部署应用程序。应用程序中不应该有一行代码将应用程序与特定的后端服务紧密耦合。</p><p>将后端服务作为绑定资源使得云原生应用程序具有更大的灵活性和弹性，从而支持服务和部署之间的松散耦合。</p><h2 id="V-Build-Release-Run"><a href="#V-Build-Release-Run" class="headerlink" title="V. Build, Release, Run"></a>V. Build, Release, Run</h2><p><strong>5. 构建，发布，运行</strong></p><blockquote><p>Strictly separate build and run stages<br>严格区分构建和运行阶段</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207549.jpeg"></p><p><strong>构建、发布和运行</strong>的原则：将部署过程分解为三个可复制的阶段，可以在任何时候进行实例化。</p><ol><li><strong>构建</strong>阶段是从源代码管理系统检出代码，并构建&#x2F;编译成存储在构件仓库(如 Docker Hub 或 Maven 仓库)中的构件的阶段。</li><li>在编译代码之后，<strong>发布</strong>阶段应用配置设置。</li><li>在<strong>运行</strong>阶段，使用 Ansible 之类的工具通过脚本提供一个执行运行环境。应用程序及其依赖关系被部署到新配置的运行环境中。</li></ol><p><strong>构建、发布和运行</strong>的关键是这个过程是完全瞬息的。如果流水线上的任何东西被破坏，所有的构件和环境都可以使用存储在源代码仓库中的资产从零再造。</p><p><strong>对于云原生应用程序而言，关键在于，每个部署阶段都是独立的，并且是单独发生的。</strong>一旦运行，云运行时将负责其维护、健康和动态扩展。</p><h2 id="VI-Processes"><a href="#VI-Processes" class="headerlink" title="VI. Processes"></a>VI. Processes</h2><p><strong>6. Processes</strong> <strong>进程</strong></p><blockquote><p>Execute the app as one or more stateless processes<br>将应用程序作为一个或多个无状态进程执行</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207401.jpeg"></p><p><strong>进程</strong>原则：可以更准确地称为无状态进程，在12要素应用程序结构下开发的应用程序将作为无状态进程的集合运行。这意味着没有单个进程跟踪另一个进程的状态，也没有进程跟踪会话或工作流状态等信息。</p><p><strong>无状态的云原生进程使扩展更加容易。</strong>当流程是无状态的时候，可以添加和删除实例，以解决给定时间点的特定负载负担。由于每个进程都是独立运行的，无状态可以防止意想不到的副作用。</p><h2 id="VII-Port-Binding"><a href="#VII-Port-Binding" class="headerlink" title="VII. Port Binding"></a>VII. Port Binding</h2><p><strong>Port binding</strong> <strong>端口绑定</strong></p><blockquote><p>Export services via port binding<br>通过端口绑定发布服务</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207767.jpeg"></p><p><strong>端口绑定</strong>原则：服务或应用程序可以通过端口号而不是域名来给网络识别。其理由是，域名和相关的 IP 地址可以通过手动操作和自动服务发现机制动态分配。因此，用它们作为参考点是不可靠的。但是，根据端口号将服务或应用程序暴露给网络更可靠，也更容易管理。</p><p>端口绑定原则背后的基本思想是，统一使用端口号是向网络公开进程的最佳方式。</p><p>例如，已经出现的模式是端口80是传统的运行在 HTTP 下的 web 服务器，端口443是 HTTPS 的默认端口号，端口22是 SSH，端口3306是 MySQL 的默认端口，端口27017是 MongoDB 的默认端口。</p><p><strong>云原生应用程序应该使用端口绑定输出服务。</strong></p><h2 id="VIII-Concurrency"><a href="#VIII-Concurrency" class="headerlink" title="VIII. Concurrency"></a>VIII. Concurrency</h2><p><strong>Concurrency</strong> <strong>并发性</strong></p><blockquote><p>Scale-out via the process model<br>通过进程模型横向扩展</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207801.jpeg"></p><p><strong>并发</strong>原则：建议根据进程的用途来组织进程，然后将这些进程分开，以便可以根据需要扩展和缩小（scale up and down）这些进程。</p><p>如上图所示，应用程序通过在负载均衡器后面运行的 web 服务器向网络公开。负载均衡器后面的 web 服务器组，依次使用业务服务流程中的业务逻辑，这些业务逻辑在自己的负载均衡器后面运行。如果 web 服务器的负载增加，可以单独扩大这个小组，以满足眼前的需求。但是，如果由于业务服务的负载而出现瓶颈，则可以独立地扩展该层。</p><p>支持并发意味着应用程序的不同部分可以扩展以满足眼前的需要。否则，当不支持并发时，架构除了垂直扩展整个应用程序之外别无选择。</p><p><strong>云原生应用程序的一种云支持的弹性可伸缩性的理想方法，是向外扩展，或者水平扩展。</strong>与其让单个大进程变得更大，不如创建多个进程，并将应用程序的负载分配给这些进程。</p><h2 id="IX-Disposability"><a href="#IX-Disposability" class="headerlink" title="IX. Disposability"></a>IX. Disposability</h2><p>易处理</p><blockquote><p>Maximize robustness with fast start-up and graceful shutdown<br>快速启动和优雅终止可最大化稳健性</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207800.jpeg"></p><p>看待这个问题的一种方式是牛和宠物的对比模型。应用实例应该更多地被视为牛(即，对它们没有情感上的依恋，相当容易替换，编号没有命名等) ，而不是宠物(即，有情感上的依恋，健康恢复护理而不是替换，等等)。</p><p><strong>易处理</strong>原则：应用程序应该优雅地启动和停止。这意味着在使用者可以访问应用程序之前，必须完成所有必需的“家务活”。例如，一个优雅的启动将确保所有数据库连接和对其他网络资源的访问都是可使用的。此外，需要进行的任何其他配置工作都已经完成。</p><p>在关机方面，易处理倡导者确保所有数据库连接和其他网络资源正确终止，并确保所有关机活动都被记录下来，如下面的代码示例所示。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">shutdown</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">signal</span>) =&gt; &#123;<br>   logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">`Disconnecting message broker at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>`</span>);<br>   messageBroker.<span class="hljs-title function_">disconnect</span>();<br><br>   logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">`Disconnecting database at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>`</span>);<br>   database.<span class="hljs-title function_">disconnect</span>();<br><br>   <span class="hljs-keyword">let</span> shutdownMessage;<br><br>   <span class="hljs-keyword">if</span> (!signal) &#123;<br>       shutdownMessage = (<span class="hljs-string">`MyCool service shutting down at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>`</span>);<br>   &#125; <span class="hljs-keyword">else</span> &#123;<br>       shutdownMessage = (<span class="hljs-string">`Signal <span class="hljs-subst">$&#123;signal&#125;</span> : MyCool service shutting down at <span class="hljs-subst">$&#123;<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()&#125;</span>`</span>);<br>   &#125;<br>   <span class="hljs-keyword">const</span> obj = &#123;<span class="hljs-attr">status</span>: <span class="hljs-string">&quot;SHUTDOWN&quot;</span>, shutdownMessage, <span class="hljs-attr">pid</span>: process.<span class="hljs-property">pid</span>&#125;;<br>   <span class="hljs-keyword">await</span> server.<span class="hljs-title function_">close</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj);<br>       process.<span class="hljs-title function_">exit</span>(<span class="hljs-number">0</span>);<br>   &#125;);<br>&#125;;<br></code></pre></td></tr></table></figure><p>云原生应用程序的进程必须是易处理的，这意味着它们可以快速启动或停止。如果应用程序不能快速启动并优雅地关闭，那么它就不能迅速扩展、部署、发布或恢复。如果启动一个应用程序，并且需要几分钟才能进入稳定状态，在当今流量高的世界中，这可能意味着在应用程序启动时，成百上千的请求被拒绝。</p><p>无法足够快速地关闭也可能带来无法处理资源的风险，这可能会破坏数据。</p><h2 id="X-Dev-x2F-Prod-Parity"><a href="#X-Dev-x2F-Prod-Parity" class="headerlink" title="X. Dev&#x2F;Prod Parity"></a>X. Dev&#x2F;Prod Parity</h2><p><strong>10. 开发与生产环境等价</strong></p><blockquote><p>Keep development, staging, and production as similar as possible<br>尽可能保持开发、预发布和生产环境相同</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207186.jpeg"></p><p><strong>开发与生产环境等价</strong>原则：所有的部署路径都是相似的但又是独立的，并且没有部署“蛙跳”到另一个部署目标。</p><p>上图显示了应用程序代码的两个版本。V1版本的目标是发布到生产环境。新版本 V2的目标是一个开发环境。V1和 V2遵循类似的部署路径，从<strong>构建</strong>到<strong>发布</strong>，然后<strong>运行</strong>。如果代码的 V2版本已经准备好投入生产，那么与 V2相关的构件和设置将<strong>不会</strong>被复制到生产环境中（图中红<strong>X</strong>）。</p><p>相反，CI&#x2F;CD 流程将被调整以设置 V2到 生产环境的部署目标。CI&#x2F;CD 流程将遵循预期的针对新目标的<strong>构建、发布和运行</strong>模式。</p><p><strong>开发与生产环境等价</strong>与<strong>构建、发布和运行</strong>非常相似。重要的区别在于<strong>开发与生产环境等价</strong>确保了生产部署过程与开发部署过程相同。这样就可以确保所有潜在的错误&#x2F;故障都可以在开发和测试中识别出来，而不是在应用程序投入生产时识别出来。</p><p>像 Docker 这样的工具可以帮助实现这种开发&#x2F;测试&#x2F;生产环境的等价。容器的好处是它为运行代码创建和使用相同的映像，提供了绝对统一的环境。它还有助于确保在每个环境中使用相同的后端服务。</p><h2 id="XI-Logs"><a href="#XI-Logs" class="headerlink" title="XI. Logs"></a>XI. Logs</h2><p><strong>11. Logs</strong> <strong>日志</strong></p><blockquote><p>Treat logs as event streams<br>将日志视为事件流</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207315.jpeg"></p><p><strong>日志</strong>原则：将日志数据发送到一个流中，各种感兴趣的消费者可以访问这个流。路由日志数据的过程需要与处理日志数据分开。</p><p>例如，一个消费者可能只对 Error 数据感兴趣，而另一个消费者可能对 Request&#x2F;Response 数据感兴趣。另一个消费者可能对存储用于事件归档的所有日志数据感兴趣。</p><p>一个额外的好处是，即使一个应用程序消亡，日志数据在之后仍然存在。</p><p>云原生应用程序的日志聚合、处理和存储，是云提供商或其他工具套件(例如，ELK 技术栈、 Splunk 等)的职责，这些工具套件与正在使用的云平台一起运行。<strong>通过简化应用程序在日志聚合和分析中的部分，可以简化应用程序的代码库，并更多地关注业务逻辑。</strong></p><h2 id="XII-Admin-Processes"><a href="#XII-Admin-Processes" class="headerlink" title="XII. Admin Processes"></a>XII. Admin Processes</h2><p><strong>管理进程</strong></p><blockquote><p>Run admin&#x2F;management tasks as one-off processes<br>将管理任务作为一次性进程运行</p></blockquote><p><img src="https://img.darklorder.com/img/202308161207330.jpeg"></p><p><strong>管理进程</strong>原则：管理进程是软件开发生命周期中的一等公民，需要被这样对待。</p><p>上图显示了作为 Docker 容器部署的名为 Orders 的服务。此外，还有一个管理服务名为 dataSeeder，可以将数据种子化到 Orders 服务中。服务 dataSeeder 是一个管理进程，用于与 Orders 一起使用，如下图所示。</p><p><img src="https://img.darklorder.com/img/202308161207998.jpeg"></p><p>但是，即使 dataSeeder 是一个管理进程，它也会被赋予一个类似于 Orders 服务的 Build、 Release 和 Run 部署路径。此外，它是根据<strong>基准代码</strong>和<strong>开发与生产环境等价</strong>的原则发布的。<strong>管理进程</strong> dataSeeder <strong>与整个 SDLC 不是分离的，而是它的一部分。</strong></p><h2 id="XIII-API-first"><a href="#XIII-API-first" class="headerlink" title="XIII. API first"></a>XIII. API first</h2><p><strong>13. API优先</strong></p><p><img src="https://img.darklorder.com/img/202308161208639.jpeg"></p><p><strong>API优先</strong>原则：应用程序通常会成为服务生态系统的参与者。但是，如果应用程序中没有明确定义 API，这可能会导致在这个生态系统中的集成失败。</p><p>API 优先方法包括开发一致且可重用的 API，使团队能够针对彼此的公共契约进行工作，而不会干扰内部开发过程。通过使用 API 优先的方法，并清楚地规划客户端应用程序和服务将使用的各种 API，每个 API 都可以被设计得尽可能有效，并且可以很容易地进行模拟。</p><p>API 描述语言可以帮助建立一个关于 API 应该如何行为的契约。API 描述语言是领域特定语言（DSL），这适合于描述 API。与编程语言或 API 实现语言相比，API 描述语言使用更高层次的抽象和声明性范式，这意味着可以使用它们来帮助表达“什么”而不是“如何”。</p><p><strong>API 的引入是为了强调 API 在云原生应用程序开发中的重要性</strong>。为云开发的应用程序通常是分布式服务生态系统的参与者，如果没有明确定义 API，这可能会导致集成失败的噩梦。因此，在设计在云中蓬勃发展的应用程序时，这个因素非常重要。</p><h2 id="XIV-Telemetry"><a href="#XIV-Telemetry" class="headerlink" title="XIV. Telemetry"></a>XIV. Telemetry</h2><p><strong>14. 遥测</strong></p><p><img src="https://img.darklorder.com/img/202308161208382.jpeg"></p><p><strong>遥测</strong>原则：遥测让云端的应用程序及其行为具有更深层次的可见性。运行在云端的应用程序实例可能在很少或没有警告的情况下移动到世界的任何地方。除此之外，可能开始时只有应用程序的一个实例，几分钟后，您可能已经运行了数百个应用程序副本。</p><p>遥测技术可以包括领域特定的指标，以及应用程序的健康和系统指标。健康度量和系统度量包括应用程序启动、关闭、伸缩、 web 请求跟踪和定期健康检查的结果。</p><p><strong>云原生应用程序的遥测技术是日志记录的重要补充</strong>。遥测技术的重点是数据收集。遥测和实时应用程序监控使开发人员能够在这个复杂和高度分布式的环境中监控应用程序的性能、健康状况和关键指标。</p><h2 id="XV-Authentication-and-authorization"><a href="#XV-Authentication-and-authorization" class="headerlink" title="XV. Authentication and authorization"></a>XV. Authentication and authorization</h2><p><strong>15. 认证和授权</strong></p><p><img src="https://img.darklorder.com/img/202308161208669.jpeg"></p><p><strong>认证和授权</strong>原则：安全性是任何应用程序和云环境的重要组成部分。</p><p>云原生应用程序可以使用基于以角色为基础的访问控制(role-based access control，RBAC)来保护其端点。这些角色规定调用的客户端是否具有足够的权限，以便应用程序能够响应请求，并为审计需要帮助跟踪发出请求的人。</p><p><strong>认证和授权要素的添加是为了强调云原生应用程序的安全性</strong>。在云环境中部署应用程序意味着应用程序可以跨越世界各地的许多数据中心传输，在多个容器中执行，并由几乎无限数量的客户端访问。</p><p>不管这个应用程序是为企业、移动设备还是云服务而设计的，安全性都不应该是事后才考虑的问题。</p><p>最后，是一份使用12因素评估应用程序的打分表，看看你的应用程序有几分。</p><table><thead><tr><th>12因素</th><th>打分（分数越高，越符合）</th></tr></thead><tbody><tr><td>基准代码</td><td>1. 使用电子邮件发送不同名称的src zip <br />2. 频繁地提交到源代码控制系统（所有代码使用同一个仓卡）  <br />3. 应用程序拆分成独立的部分，每个部分都有自有的仓库</td></tr><tr><td>依赖管理</td><td>1. 手动下载jar到&#x2F;lib。  <br />2. 使用软件包管理器（mvn、npm），期望提供工具(curl)  <br />3. 使用 artifact 管理器（Artifactory），捆绑依赖项和工具</td></tr><tr><td>配置、证书和代码</td><td>1. 硬代码 URL，密码在代码中，使用像if(Mode.PROD) 的代码  <br />2. 使用配置文件，不同环境的多个配置文件  <br />3. 使用配置服务（Spring Cloud Config、Zookeeper）</td></tr><tr><td>后端服务</td><td>1. 供应商特定的连接库，硬代码连接字符串  <br />2. 连接参数存在在配置文件中  <br />3. 动态发现资源，独立地更新后端服务</td></tr><tr><td>设计、构建、发布和运行</td><td>1. 开发从本地构建和部署代码，生产环境由手动推送  <br />2. 使用构建&#x2F;发布工具(Jenkins，TravisCI)，清晰地分离构建和部署步骤  <br />3. 有一键点击发布流水线，每个发布都用版本控制并保存用于回滚，没有人工干预</td></tr><tr><td>无状态进程</td><td>1. 粘性会话，将应用程序数据写入到本地文件系统  <br />2. 不依赖于本地存储的数据  <br />3. 无状态，将会话数据存储在数据存储中(redis)，缓存中间阶段的事务步骤</td></tr><tr><td>端口绑定</td><td>1. 部署到应用程序容器  <br />2. 单机的，但监听特定的端口  <br />3. Web服务器是应用程序的一部分(node，netty)，应用程输出HTTP服务</td></tr><tr><td>并发性</td><td>1. 必须顺序运行的阻塞式任务  <br />2. 非阻塞式IO服务器（node、netty） <br />3. 水平扩展，小型、独立的微服务</td></tr><tr><td>易处理</td><td>1. 需要一个开发人员来协调重启  <br />2. 快速启动  <br />3. 优雅地崩溃，低于1秒重新启动，存储状态以快速恢复</td></tr><tr><td>环境等价</td><td>1. 开发人员对生产环境没有了解，开发环境不同于生产环境  <br />2. 用轻量级替换品（内存H2、SQLite）替代  <br />3. 环境是相同的</td></tr><tr><td>日志</td><td>1. System.out.print()  <br />2. 写入到web服务器上的日志文件  <br />3. 将日志当作流来处理(ELK)</td></tr><tr><td>管理进程</td><td>1. 手动编辑数据库条目  <br />2. 将迁移脚本存储在仓库中  <br />3. 使用框架的工具链</td></tr></tbody></table><p><strong>参考资料</strong><br><a href="https://zhuanlan.zhihu.com/p/452532308">云原生架构设计方法论——12因素应用程序图解，12 Factor - 知乎</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Cloud Native</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Cloud Native</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>后疫情时代：大重构</title>
+    <link href="/2023/08/16/COVID-19-The-Great-Reset/"/>
+    <url>/2023/08/16/COVID-19-The-Great-Reset/</url>
+    
+    <content type="html"><![CDATA[<p>“当危机结束后，有些人会突然发现他们的国家已经不再是那个他们愿意生活的地方了。这种心态的变化并不新鲜。过去几年中,政府和企业一直在使用越来越专业的技术来监测甚至操控公民和员工”。——《后疫情时代：大重构》</p><p>类似于，奥本海默对发明原子弹的晚年悔恨，“我们知道世界将不一样了。”</p><p><strong>源于网络</strong></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>计算机提供的生产力</title>
+    <link href="/2023/08/16/computer/"/>
+    <url>/2023/08/16/computer/</url>
+    
+    <content type="html"><![CDATA[<p>计算机提供两种重要的生产力，一种是解决繁琐重复性的劳作，一种是解决人解决不了的问题，前者替换人，后者超越人。</p><p><strong>源于网络</strong></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>iPhone今天这个大漏洞，让人打开App就被盗刷一万五。。。</title>
     <link href="/2023/07/24/Spend-money-to-buy-lessons/"/>
     <url>/2023/07/24/Spend-money-to-buy-lessons/</url>
@@ -37,6 +88,44 @@
     <content type="html"><![CDATA[<p><strong>美国的一首小诗</strong></p><span id="more"></span><p>在时间上，纽约走在加州前面三个小时，</p><p>New York is 3 hours ahead of California,</p><p>但加州并没有变慢。</p><p>but it does not make California slow.</p><p>有人22岁就毕业了，</p><p>Someone graduated at the age of 22,</p><p>但等了五年才找到好工作！</p><p>but waited 5 years before securing a good job!</p><p>有人25岁就当上了CEO，</p><p>Someone became a CEO at 25,</p><p>却在50岁去世了。</p><p>and died at 50.</p><p>也有人直到50岁才当上CEO，</p><p>While another became a CEO at 50,</p><p>最后活到90岁。</p><p>and lived to 90 years.</p><p>有人依然单身，</p><p>Someone is still single,</p><p>而别人却早已结婚。</p><p>while someone else got married.</p><p>奥巴马55岁退任总统，</p><p>Obama retires at 55,</p><p>而川普却是70岁才开始当。</p><p>but Trump starts at 70.</p><p>世上每个人都有自己的发展时区。</p><p>Absolutely everyone in this world works based on their Time Zone.</p><p>身边有些人看似走在你前面，</p><p>People around you might seem to go ahead of you,</p><p>也有人看似走在你后面。</p><p>some might seem to be behind you.</p><p>但其实每个人在自己的时区有自己的步程。</p><p>But everyone is running their own RACE, in their own TIME.</p><p>不用嫉妒或嘲笑他们。</p><p>Don’t envy them or mock them.</p><p>他们都在自己的时区，你在你的！</p><p>They are in their TIME ZONE, and you are in yours!</p><p>生命就是等待正确的时机行动。</p><p>Life is about waiting for the right moment to act.</p><p>所以，放轻松。</p><p>So, RELAX.</p><p>你没有落后，</p><p>You’re not LATE.</p><p>你没有领先。</p><p>You’re not EARLY.</p><p>在命运为你安排的属于你自己的时区里，一切都非常准时。</p><p>You are very much ON TIME, and in your TIME ZONE Destiny set up for you.</p><p><strong>源于网络</strong></p>]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>完美自杀方法</title>
+    <link href="/2022/11/11/Perfect-Suicide-Method/"/>
+    <url>/2022/11/11/Perfect-Suicide-Method/</url>
+    
+    <content type="html"><![CDATA[<ul><li>洗一个热水澡 </li><li>泡一杯热牛奶 加点蜂蜜 </li><li>把空调开到舒适的温度 </li><li>喝下牛奶 躺到床上 </li><li>等你睁开眼看见太阳升起就是你已经死了并轮回了</li></ul><p>用新身份新心情去重新活吧 嘘 —直是孟婆搞错 不小心让你的下一世和上一世有点像而已.</p><p><strong>源于网络</strong></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Kubernetes部署疑难解答的可视化指南</title>
+    <link href="/2022/11/01/troubleshooting-deployments/"/>
+    <url>/2022/11/01/troubleshooting-deployments/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><p><img src="https://img.darklorder.com/img/202308161223176.png" alt="A visual guide on troubleshooting Kubernetes deployments"></p><p><strong>参考资料</strong><br><a href="https://learnk8s.io/troubleshooting-deployments">A visual guide on troubleshooting Kubernetes deployments</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Kubernetes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Kubernetes</tag>
+      
+    </tags>
     
   </entry>
   
@@ -88,6 +177,56 @@
     <content type="html"><![CDATA[<span id="more"></span><p><strong>K8S | Ceph | Prometheus | 分布式路链追踪 | Envoy | Istio | Knative | GitOps</strong></p><img src="https://img.darklorder.com/img/202308030631850.png"/><p><strong>参考资料</strong></p>]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Docker容器十诫</title>
+    <link href="/2022/09/16/10-things-to-avoid-in-docker-containers/"/>
+    <url>/2022/09/16/10-things-to-avoid-in-docker-containers/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><p><img src="https://img.darklorder.com/img/202308151811281.jpeg"></p><p>当你刚开始使用容器时，会发现容器能解决许多问题，而且好处很多：</p><ul><li>首先：容器是不可变的 —— 操作系统、库版本、配置、文件夹以及应用全都包裹在容器内。你可以确保，在 QA 阶段测试的一张图片，肯定会在生产环境中出现，并且行为保持一致。</li><li>其次：容器是轻量级的 —— 容器的内存占用很小。容器只会给主进程分配内存，因此无需十几万个 MB 的内存空间。</li><li>最后：容器速度很快 —— 启动容器就跟启动典型的 linux 进程一样快。无需好几分钟，一个新的容器可以在几秒内启动完毕。</li></ul><p>然而，许多用户仍然只是将容器视为典型的虚拟机。他们忘记了容器的一个重要特征：<strong>容器是可丢弃的</strong>。</p><p>围绕容器的咒语：“容器是临时的”。</p><p><img src="https://img.darklorder.com/img/202308151811693.png"></p><p>鉴于这一特征，用户必须转变他们使用以及管理容器时的心态。下面，笔者将介绍为了充分利用 Docker 容器的好处，用户应该<strong>避免</strong>的十个陷阱：</p><p><strong>1）不要在容器内存储数据</strong> —— 容器可以被停止、销毁或者取代。运行在容器中的应用1.0版本应该能够轻易地被1.1版本所取代，且不产生任何影响或数据丢失。因此，如果你需要存储数据，请将其存储在卷组(volume)中。在这种情况下，你要格外小心两个容器向同一卷组写入数据的情况，因为这很容易导致数据污染。总之，要确保自己的应用向共享的数据存储区填写数据。</p><p><strong>2）不要将应用分开发布</strong> —— 有些人会将容器视为虚拟机，他们中的大部分人认为，应该在现有的运行容器中部署应用。在开发阶段，因为需要不断地修改配置并调试应用，这样做无可厚非。但是，当持续交付管道行进至 QA 与生产阶段时，不应该把镜像和应用分开。记住：容器是<strong>不可变</strong>的。</p><p><strong>3）不要创建太大的镜像</strong> —— 镜像越大，越难以分发。确保只留有运行应用或进程所需的文件和库。不要安装不必要的包或运行“update”(yum update)指令下载太多文件到新的镜像层。</p><p>更新：关于这条建议，有一篇解释更为详尽的文章：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http://developers.redhat.com/blog/2016/03/09/more-about-docker-images-size/">《保持小巧：细究 Docker 镜像大小》</a></p><p><strong>4）不要使用单层镜像</strong> —— 为了有效利用分层的文件系统，总是为操作系统创建基础镜像层，此外，分别为<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https://github.com/jboss-dockerfiles/base/blob/master/Dockerfile">用户名定义</a>、<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https://github.com/jboss-dockerfiles/wildfly/blob/master/Dockerfile">运行时安装</a>、配置、以及自己的应用创建不同的镜像层。这样一来，重现、管理以及传送镜像会变得更为简单。</p><p><strong>5）不用为运行中的容器创建镜像</strong> —— 换句话说，不要使用 “docker commit” 指令创建镜像。这种创建镜像的方法是不可重现的，应该完全避免。相反，总是使用 Dockerfile 或任何 S2I (source-to-image，源码到镜像) —— 完全可重现的方法来创建镜像。这样一来，如果你将 Dockerfile 保存在源码存储控制库(git)内，就可以追踪其后续变化。</p><p><strong>6）不要单独使用“latest(最新)”标签</strong> —— 最新标签就像 Maven 用户眼中的 “SNAPSHOT(快照)”。因为容器本身的分层式文件系统，我们鼓励使用标签。但是，你可不想在几个月后正打算创建镜像时，却惊讶地发现应用无法运行，而原因居然是一个父层(Dockerfile 中的 FROM)已经被无法向后兼容的新版取代，或是创建缓存中检索出的“最新”版本是错的。此外，由于你无法追踪当前运行镜像的版本，“最新”标签也不应该在生产环境中部署容器时使用。</p><p><strong>7）不要在一个容器内运行多个进程</strong> —— 容器在运行单一进程(http 后台进程、应用服务器、数据库)时几乎无可挑剔，但是，如果运行多个进程，你可能会在管理、检索日志以及独个更新进程时遇到麻烦。</p><p><strong>8）不要在镜像中存储凭证</strong> —— 使用环境变量。不要将镜像中的任何用户名或密码写死。使用环境变量从容器外部检索这些信息。<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https://github.com/docker-library/postgres/blob/443c7947d548b1c607e06f7a75ca475de7ff3284/9.5/docker-entrypoint.sh">Postgress 镜像</a>就是践行该准则的好榜样。</p><p><strong>9）不要以 root 用户运行进程</strong> —— “默认情况下，docker 容器以 root 权限运行。(…)随着 Docker 的不断完善，更多<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http://blog.oneapm.com/tags-%25E5%25AE%2589%25E5%2585%25A8.html">安全</a>的默认选项会逐渐出现。就当下而言，要求 root 权限对有些用户而言比较危险，可能无法在所有环境中实现。你的镜像应该使用 USER 指令为容器确定一个非 root 运行权限。”（摘自<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http://www.projectatomic.io/docs/docker-image-author-guidance/">《Docker 镜像作者指南》</a>）</p><p><strong>10）不要依赖 IP 地址</strong> —— 每个容器都有其内部 IP 地址，该地址可能因为启动或停止容器而发生改变。如果你的应用或微服务需要与另一个容器交换消息，应该使用环境变量在容器间传送合适的主机名与端口号。</p><p><strong>参考资料</strong><br><a href="http://developerblog.redhat.com/2016/02/24/10-things-to-avoid-in-docker-containers/">OneAPM 官方博客</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Docker</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>容器并不能解决一切问题</title>
+    <link href="/2022/09/15/Containers-dont-solve-everything/"/>
+    <url>/2022/09/15/Containers-dont-solve-everything/</url>
+    
+    <content type="html"><![CDATA[<span id="more"></span><p>我们的行业在过去十年中取得了令人难以置信的进步，这在一定程度上要归功于 Docker、Docker Compose 和 Kubernetes 等技术。然而，我们仍在研究如何在我们所处的多样化环境中进行开发。</p><p>容器化在开发和运维领域掀起了一场风暴。在过去，部署是高度依赖于特定技术的，通常需要对每个项目进行大量不可重复的工程工作。你是否部署到 VPS？你是否在分发虚拟机镜像？静态可执行文件？需要特定解释器的脚本? 根据你对这些问题的回答，你可能已经使用了 Capistrano、Puppet、shell 脚本、Ansible、deb 或 rpm 包、cloud-init 脚本、专有云技术、upstart、systemd、init 等很多技术。在部署阶段，系统管理和开发之间的界限就变得模糊了，DevOps 的原则就诞生了。随着 DevOps 开始成熟，业界发展出了应用开发的最佳实践，比如 12 因素应用程序方法论，但许多实现细节仍然是依赖于特定技术的。</p><h3 id="1、进入-Docker"><a href="#1、进入-Docker" class="headerlink" title="1、进入 Docker"></a><strong>1、进入 Docker</strong></h3><p><img src="https://img.darklorder.com/img/202308151728741.png"></p><p>使用 Docker 打包和部署</p><p>然后 Docker 出现了，并通过如下简单的规则使应用程序的部署产品化：如果你的应用程序可以打包成一个容器，那么它就可以部署在任何地方。容器并不是什么新鲜事——毕竟，谷歌已经使用它们很多年了。Unix 黑客也曾出于类似目的使用 Solaris Zones 和 FreeBSD jail。然而，在 Docker 出现之前，还没有一个很好的方式可以轻松地将应用程序打包到一个可移植的容器中。Docker 彻底改变了我们部署应用程序的方式。</p><p>Docker 解决了许多重要的部署问题，所以接下来要问的问题是 Docker 是否为开发提供了任何优势。拥有一个看起来（至少大体看起来）像生产环境的开发环境有很多好处。如果你在生产环境中部署 Docker 容器，那么在开发过程中在容器中运行代码也是合理的。此外，Docker 还解决了版本依赖关系的问题。例如，如果你有一个应用程序需要 MySQL 5.3，而另一个应用程序需要 MySQL 5.7，那么你就不需要在本地运行两个版本，也不需要在各自的虚拟机中运行每个版本。你可以为每个版本使用一个容器，它们可以在几秒钟内启动和停止。</p><p>使用 Docker Compose 进行开发</p><p><img src="https://img.darklorder.com/img/202308151728306.png"></p><p>2013 年底，Docker Compose（当时称为 fig）进入了这个领域。Docker Compose 有一个简单的前提：与使用一次性脚本启动和停止应用程序及其在开发中的依赖不同，你把它们描述为 YAML 文件中的 Docker 容器，并让 Docker Compose 管理它们的生命周期。它提供了一些额外的细节，如为 12 因素应用程序提供日志采集、环境变量以及基本容器网络。简而言之，Docker Compose 对那些想要使用容器化的方法开发 12 因素应用程序的开发人员来说是一种完美工具。</p><p>乍一看，Docker Compose 似乎是本地开发的理想解决方案——在许多情况下，它确实是。然而，就像它的名字一样，它只关注那些一切都在 Docker 内部运行的开发工作流。在某些情况下，这样做很好。例如，如果你在 Node.JS 中编写一个依赖于 Postgres 的 API，那么你可以在 nodejs 容器中运行代码（可能在它前面有一个文件监视器），在 Postgres 容器中运行 Postgres。然而，并不是所有的开发工作流都可以被容器化。无论是为了性能、易于与主机操作系统特性集成，还是其他许多原因，有时最好将开发环境的某些部分作为本地进程运行，而将其他部分作为容器运行。你仍然需要拼凑一个解决方案，以将非 Docker 部分与一些 Docker 容器进行集成。</p><p>此外，考虑到 Docker 依赖于 Linux 内核特定的特性来实现容器，macOS、Windows、FreeBSD 和其他操作系统的用户仍然需要虚拟化层。我们想要通过使用容器来摆脱的一系列复杂的网络、文件同步和虚拟机管理等问题仍然存在。当然，它们通常是可以工作的——直到出现问题，这时我们就只剩下谷歌、Stack Overflow 和 GitHub 来帮助我们找到解决方案。</p><h3 id="2、现代开发：云和微服务"><a href="#2、现代开发：云和微服务" class="headerlink" title="2、现代开发：云和微服务"></a><strong>2、现代开发：云和微服务</strong></h3><p><img src="https://img.darklorder.com/img/202308151728069.png"></p><p>云原生开发的复杂性</p><p>快进到 2021 年，大多数生产级应用也依赖于云基础设施，这些基础设施不能作为本地 Docker 容器运行，因此我们面临一系列新的问题，每个问题都需要权衡：</p><ul><li><p>我们是否将云服务存根？这种方法成本低、性能好，但除了非常简单的服务外，维护本地存根所需工程量很高。</p></li><li><p>每个开发人员是否都有自己的每个云资源实例？这通常代价高昂，公司必须支付很高的成本来保留很少使用的基础设施。无服务器产品通常比预留产品有更好的成本模型，但仍然必须考虑成本。</p></li><li><p>开发人员是否共享共同的开发基础设施？在此选项中，基础设施成本降低了，但通常需要额外的工程量，以便多个应用程序可以共享相同的数据库和其他有状态服务而不会发生冲突。换句话说，每个应用程序都必须支持多租户。</p></li></ul><p>以上选项在不同的场景中都是可行的，但这里要说的是采用 Docker 或者 Docker Compose 并不能解决问题——甚至不能指出哪个选项是最好的！现代开发环境编排器必须具有云感知能力并支持不同的运行时架构。目前，基础设施即代码工具最接近解决这个问题，但由于它们专注于生产部署，因此无法与本地开发环境顺利集成。</p><p>除了云服务，微服务还具有它们自身的复杂性，这些复杂性是“仅仅使用 Docker”无法解决的。任何采用了微服务策略的大型组织都会迅速发展到任何开发人员都可以在其笔记本电脑上运行该组织所有服务的地步。像 Telepresence 这样的工具有助于将本地容器连接到远程 Kubernetes 集群中运行的容器，但我们仍然缺乏能够跨本地和远程环境透明地处理服务发现、代理和身份验证等问题的高级工具。而且，现有的工具大多是以 kubernetes 为中心的，这给很多开发人员增加了使用难度。</p><h3 id="3、下一步是什么？"><a href="#3、下一步是什么？" class="headerlink" title="3、下一步是什么？"></a><strong>3、下一步是什么？</strong></h3><p>我们的行业在过去十年中取得了令人难以置信的进步，这在一定程度上要归功于 Docker、Docker Compose 和 Kubernetes 等技术。然而，我们仍在研究如何在我们所处的多样化环境中进行开发。下一代开发工具必须能够处理本地进程、Docker 容器、云服务，甚至其他团队的微服务的构建和运行。针对所有这些问题，我们还没有答案，但我们正在构建 exo，以帮助像我们这样的开发者克服本地开发的复杂性。</p><p><strong>参考资料</strong><br><a href="https://blog.deref.io/containers-dont-solve-everything/">容器并不能解决一切问题</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Cloud Native</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Cloud Native</tag>
+      
+    </tags>
     
   </entry>
   
