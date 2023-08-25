@@ -273,6 +273,189 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/09/08/Docker-Networking/" target="_blank">
+          Docker网络
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/08/Docker-Networking/" target="_blank">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-08 00:00" pubdate>
+              2022-09-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">#Docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/07/Docker-data-volume/" target="_blank">
+          Docker存储卷
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/07/Docker-data-volume/" target="_blank">
+        <div>
+          存储卷COW机制（写时复制）Docker镜像由多个只读层叠加而成，启动容器时，Docker会加载只读镜像层并在镜像栈顶部添加一个读写层。 如果容器修改了镜像的原有文件，那么只读层的文件不会被修改，而是会被复制到读写层做修改，只读版本依然存在，只是被读写层中的副本隐藏起来了，这就是“写时复制(COW)”机制。  因为隔着很多层镜像，用上面这种方式，去访问一个文件，然后进行修改和删除等一类的操作，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-07 00:00" pubdate>
+              2022-09-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">#Docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/06/Docker-Images/" target="_blank">
+          Docker镜像
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/06/Docker-Images/" target="_blank">
+        <div>
+          Docker Images运行容器时，基于Mount名称空间建立的隔离文件系统中的内容来自镜像  Docker镜像是一个特殊的文件系统，它必须包含运行应用程序所需的一切——所有依赖项、配置、脚本、二进制文件等  镜像还包含容器的其他配置，例如环境变量、要运行的默认命令、和其他元数据  通常，镜像还要定义默认启动的应用   Docker镜像由许多层（Layer）叠加而成  依赖于特殊的存储驱动，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-06 00:00" pubdate>
+              2022-09-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">#Docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/09/05/Docker-command-manual/" target="_blank">
           Docker命令大全
         </a>
@@ -342,7 +525,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/Doker-from-Introduction-to-Practice/" target="_blank">
         <div>
-          Docker的常用命令  Docker的状态转换  Docker的启动流程  Docker的事件机制  Docker的https:&#x2F;&#x2F;github.com&#x2F;CentOS&#x2F;CentOS-Dockerfiles 参考资料XXXX
+          Docker的常用命令  Docker的状态转换  Docker的启动流程  Docker的事件机制  Docker 三剑客 Docker Compose Docker Machine Docker Swarm  参考资料XXXX
         </div>
       </a>
 
@@ -661,189 +844,6 @@
           </div>
         
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/12/Classification-and-Introduction-of-Virtualization-Technology/" target="_blank">
-          虚拟化技术的分类及介绍
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/12/Classification-and-Introduction-of-Virtualization-Technology/" target="_blank">
-        <div>
-          摘要虚拟化是云计算系统中的一种基础技术，可以说当前一个云计算服务必定是构建在虚拟化的基础上的。本文首先介绍了不同抽象层次的虚拟化技术，之后对应用广泛的系统级虚拟化和操作系统级虚拟化进行了更详细的分类和描述，最后介绍了各种典型虚拟化方案的具体实现。 引言虚拟化是计算机系统中的一个重要概念，基本上每个计算机系统都提供一个给上层软件的界面，从处理器提供的基本指令集到很多中间件系统提供的巨大的应用程序
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-12 00:00" pubdate>
-              2022-08-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Hypervisor/" class="category-chain-item">Hypervisor</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hypervisor/">#Hypervisor</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/10/what-is-a-hypervisor/" target="_blank">
-          虚拟化技术
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/10/what-is-a-hypervisor/" target="_blank">
-        <div>
-          Hypervisor是所有虚拟化技术的核心。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-10 00:00" pubdate>
-              2022-08-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Hypervisor/" class="category-chain-item">Hypervisor</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hypervisor/">#Hypervisor</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/07/What-is-SRE/" target="_blank">
-          SRE 到底是什么
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/07/What-is-SRE/" target="_blank">
-        <div>
-          什么是 SRE？SRE 需要具备什么能力？
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-07 00:00" pubdate>
-              2022-08-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/SRE/" class="category-chain-item">SRE</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SRE/">#SRE</a>
-            
-          </div>
         
       </div>
     </article>
