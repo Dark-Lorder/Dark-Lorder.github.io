@@ -4,7 +4,7 @@
   <url>
     <loc>https://www.darklorder.com/2022/09/08/Docker-Networking/</loc>
     
-    <lastmod>2023-08-28</lastmod>
+    <lastmod>2023-08-29</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -523,14 +523,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Kubernetes/</loc>
+    <loc>https://www.darklorder.com/tags/SRE/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/SRE/</loc>
+    <loc>https://www.darklorder.com/tags/Kubernetes/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -567,14 +567,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Kubernetes/</loc>
+    <loc>https://www.darklorder.com/categories/SRE/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/SRE/</loc>
+    <loc>https://www.darklorder.com/categories/Kubernetes/</loc>
     <lastmod>2023-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
