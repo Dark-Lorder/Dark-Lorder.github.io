@@ -1,3 +1,5 @@
+https://www.darklorder.com/2022/09/11/Best-practices-for-writing-Dockerfiles/
+https://www.darklorder.com/2022/09/10/Dockerfiles/
 https://www.darklorder.com/2022/09/08/Docker-Networking/
 https://www.darklorder.com/2022/09/11/Docker-Three-Swordsmen/
 https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/
@@ -6,7 +8,6 @@ https://www.darklorder.com/Network/index.html
 https://www.darklorder.com/2022/09/14/Docker-container-into-the-running-of-four-ways/
 https://www.darklorder.com/2022/09/02/Introduction-to-Docker-Containers/
 https://www.darklorder.com/2022/08/31/Kernel-Namespace/
-https://www.darklorder.com/2022/09/10/Dockerfiles/
 https://www.darklorder.com/2022/09/07/Docker-data-volume/
 https://www.darklorder.com/2022/09/06/Docker-Images/
 https://www.darklorder.com/2022/11/16/the-future-of-api-gateways-on-kubernetes/
