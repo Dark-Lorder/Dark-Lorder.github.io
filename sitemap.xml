@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.darklorder.com/2022/09/17/Harbor-is-High-Availability-Solution/</loc>
+    
+    <lastmod>2023-09-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/09/18/Docker-Interview-Questions/</loc>
+    
+    <lastmod>2023-09-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.darklorder.com/2022/09/11/Best-practices-for-writing-Dockerfiles/</loc>
     
     <lastmod>2023-08-31</lastmod>
@@ -39,15 +57,6 @@
   
   <url>
     <loc>https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/</loc>
-    
-    <lastmod>2023-08-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.darklorder.com/2022/09/18/Docker-Interview-Questions/</loc>
     
     <lastmod>2023-08-25</lastmod>
     
@@ -511,14 +520,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
+    <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
+    <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -532,14 +541,14 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/Kubernetes/</loc>
+    <loc>https://www.darklorder.com/tags/SRE/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/tags/SRE/</loc>
+    <loc>https://www.darklorder.com/tags/Kubernetes/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -562,13 +571,6 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
-    <lastmod>2023-09-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.darklorder.com/categories/Hypervisor/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -576,7 +578,7 @@
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/categories/Kubernetes/</loc>
+    <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -584,6 +586,13 @@
   
   <url>
     <loc>https://www.darklorder.com/categories/SRE/</loc>
+    <lastmod>2023-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/categories/Kubernetes/</loc>
     <lastmod>2023-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
