@@ -232,6 +232,31 @@
   
   
   <entry>
+    <title>Kubernetes Pod概述</title>
+    <link href="/2022/10/03/Kubernetes-concepts-workloads-pods/"/>
+    <url>/2022/10/03/Kubernetes-concepts-workloads-pods/</url>
+    
+    <content type="html"><![CDATA[<p>Pod 是可以在 Kubernetes 中创建和管理的、最小的可部署的计算单元。</p><span id="more"></span><p><strong>参考资料</strong><br><a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/">Pod | Kubernetes</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Kubernetes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Kubernetes</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>云原生 2.0 白皮书</title>
     <link href="/2022/10/01/Cloud-native-white-paper/"/>
     <url>/2022/10/01/Cloud-native-white-paper/</url>
@@ -261,7 +286,7 @@
     <link href="/2022/10/01/Kubernetes-from-Introduction-to-Practice/"/>
     <url>/2022/10/01/Kubernetes-from-Introduction-to-Practice/</url>
     
-    <content type="html"><![CDATA[<span id="more"></span><h3 id="Kubernetes集群架构"><a href="#Kubernetes集群架构" class="headerlink" title="Kubernetes集群架构"></a>Kubernetes集群架构</h3><p><strong>参考资料</strong><br><a href="https://">XXXX</a></p>]]></content>
+    <content type="html"><![CDATA[<span id="more"></span><h3 id="Kubernetes集群架构"><a href="#Kubernetes集群架构" class="headerlink" title="Kubernetes集群架构"></a>Kubernetes集群架构</h3><img src="https://img.darklorder.com/img/202309061618958.webp"/><p><strong>参考资料</strong><br><a href="https://kubernetes.io/docs/home/">Kubernetes 文档 | Kubernetes</a></p>]]></content>
     
     
     <categories>
