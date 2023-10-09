@@ -2,18 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/</loc>
+    <loc>https://www.darklorder.com/2022/10/01/Kubernetes-from-Introduction-to-Practice/</loc>
     
-    <lastmod>2023-09-06</lastmod>
+    <lastmod>2023-09-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.darklorder.com/2022/10/01/Kubernetes-from-Introduction-to-Practice/</loc>
+    <loc>https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/</loc>
     
-    <lastmod>2023-09-06</lastmod>
+    <lastmod>2023-09-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/2022/08/11/G-W-F-Hegel/</loc>
+    
+    <lastmod>2023-09-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -526,7 +535,7 @@
 
   <url>
     <loc>https://www.darklorder.com/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -534,49 +543,56 @@
   
   <url>
     <loc>https://www.darklorder.com/tags/Docker/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Cloud-Native/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Cloud-Computing/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.darklorder.com/tags/%E5%93%B2%E5%AD%A6/</loc>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Hypervisor/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/Kubernetes/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/%E4%B8%9B%E6%9E%97%E6%B3%95%E5%88%99/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/tags/SRE/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -585,42 +601,42 @@
   
   <url>
     <loc>https://www.darklorder.com/categories/Docker/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Cloud-Native/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Cloud-Computing/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Hypervisor/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/Kubernetes/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.darklorder.com/categories/SRE/</loc>
-    <lastmod>2023-09-11</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

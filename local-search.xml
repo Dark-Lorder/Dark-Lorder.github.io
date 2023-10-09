@@ -286,7 +286,7 @@
     <link href="/2022/10/01/Kubernetes-from-Introduction-to-Practice/"/>
     <url>/2022/10/01/Kubernetes-from-Introduction-to-Practice/</url>
     
-    <content type="html"><![CDATA[<span id="more"></span><h3 id="Kubernetes集群架构"><a href="#Kubernetes集群架构" class="headerlink" title="Kubernetes集群架构"></a>Kubernetes集群架构</h3><img src="https://img.darklorder.com/img/202309061618958.webp"/><p><strong>参考资料</strong><br><a href="https://kubernetes.io/docs/home/">Kubernetes 文档 | Kubernetes</a></p>]]></content>
+    <content type="html"><![CDATA[<span id="more"></span><h3 id="Kubernetes集群架构"><a href="#Kubernetes集群架构" class="headerlink" title="Kubernetes集群架构"></a>Kubernetes集群架构</h3><img src="https://img.darklorder.com/img/202309061618958.webp"/><hr><p>微服务：分散能力。</p><p>分布式：分散部署。</p><p>微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。</p><p><a href="https://landscape.cncf.io/card-mode?category=certified-kubernetes-installer">https://landscape.cncf.io/card-mode?category=certified-kubernetes-installer</a></p><hr><h3 id="Kubernetes-对象管理"><a href="#Kubernetes-对象管理" class="headerlink" title="Kubernetes 对象管理"></a>Kubernetes 对象管理</h3><p><strong>参考资料</strong><br><a href="https://kubernetes.io/docs/home/">Kubernetes 文档 | Kubernetes</a></p>]]></content>
     
     
     <categories>
@@ -788,6 +788,25 @@
     <tags>
       
       <tag>Hypervisor</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>黑格尔经典名言</title>
+    <link href="/2022/08/11/G-W-F-Hegel/"/>
+    <url>/2022/08/11/G-W-F-Hegel/</url>
+    
+    <content type="html"><![CDATA[<p>Where reality (existence) is reasonable， all reasonable (presence) is realistic。</p><p>凡是现实(存在)的就是合理的，凡是合理(存在)的就是现实的。</p><p>History taught us is that people never know learn the lessons of history。</p><p>历史给我们的教训是，人们从来都不知道汲取历史的教训。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>哲学</tag>
       
     </tags>
     

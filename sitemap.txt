@@ -1,5 +1,6 @@
-https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/
 https://www.darklorder.com/2022/10/01/Kubernetes-from-Introduction-to-Practice/
+https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/
+https://www.darklorder.com/2022/08/11/G-W-F-Hegel/
 https://www.darklorder.com/2023/09/05/operators-in-kubernetes/
 https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/
 https://www.darklorder.com/2022/09/12/Best-practices-for-writing-Dockerfiles/
@@ -60,6 +61,7 @@ https://www.darklorder.com/
 https://www.darklorder.com/tags/Docker/
 https://www.darklorder.com/tags/Cloud-Native/
 https://www.darklorder.com/tags/Cloud-Computing/
+https://www.darklorder.com/tags/%E5%93%B2%E5%AD%A6/
 https://www.darklorder.com/tags/Hypervisor/
 https://www.darklorder.com/tags/Kubernetes/
 https://www.darklorder.com/tags/%E4%B8%9B%E6%9E%97%E6%B3%95%E5%88%99/
