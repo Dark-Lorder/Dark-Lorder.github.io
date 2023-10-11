@@ -18,16 +18,18 @@
   <meta name="author" content="无产阶级没有版权">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Kubernetes集群架构    微服务：分散能力。 分布式：分散部署。 微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。 https:&#x2F;&#x2F;landscape.cncf.io&#x2F;card-mode?category&#x3D;certified-kubernetes-installer  Kub">
+    <meta name="description" content="Kubernetes概述Kubernetes 是一个可移植、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态，其服务、支持和工具的使用范围相当广泛。 Kubernetes 这个名字源于希腊语，意为“舵手”或“飞行员”。k8s 这个缩写是因为 k 和 s 之间有八个字符的关系。 Google 在 2014 年开源了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kubernetes从入门到实践">
 <meta property="og:url" content="https://www.darklorder.com/2022/10/01/Kubernetes-from-Introduction-to-Practice/index.html">
 <meta property="og:site_name" content="DK - Kubernetes|Docker|Prometheus|Istio|Envoy|Golang|云原生|SRE">
-<meta property="og:description" content="Kubernetes集群架构    微服务：分散能力。 分布式：分散部署。 微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。 https:&#x2F;&#x2F;landscape.cncf.io&#x2F;card-mode?category&#x3D;certified-kubernetes-installer  Kub">
+<meta property="og:description" content="Kubernetes概述Kubernetes 是一个可移植、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态，其服务、支持和工具的使用范围相当广泛。 Kubernetes 这个名字源于希腊语，意为“舵手”或“飞行员”。k8s 这个缩写是因为 k 和 s 之间有八个字符的关系。 Google 在 2014 年开源了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.darklorder.com/img/202309061618958.webp">
+<meta property="og:image" content="https://img.darklorder.com/img/202310091208219.png">
+<meta property="og:image" content="https://img.darklorder.com/img/202112042053985.png">
 <meta property="article:published_time" content="2022-09-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-22T05:16:15.163Z">
+<meta property="article:modified_time" content="2023-10-11T17:03:29.706Z">
 <meta property="article:author" content="无产阶级没有版权">
 <meta property="article:tag" content="Kubernetes">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          227 字
+          2.4k 字
         
       </span>
     
@@ -282,7 +284,7 @@
         
         
         
-          2 分钟
+          20 分钟
         
       </span>
     
@@ -327,16 +329,57 @@
                 
                 <span id="more"></span>
 
+<h2 id="Kubernetes概述"><a href="#Kubernetes概述" class="headerlink" title="Kubernetes概述"></a>Kubernetes概述</h2><p>Kubernetes 是一个可移植、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态，其服务、支持和工具的使用范围相当广泛。</p>
+<p>Kubernetes 这个名字源于希腊语，意为“舵手”或“飞行员”。k8s 这个缩写是因为 k 和 s 之间有八个字符的关系。 Google 在 2014 年开源了 Kubernetes 项目。 Kubernetes 建立在 Google 大规模运行生产工作负载十几年经验的基础上， 结合了社区中最优秀的想法和实践。</p>
 <h3 id="Kubernetes集群架构"><a href="#Kubernetes集群架构" class="headerlink" title="Kubernetes集群架构"></a>Kubernetes集群架构</h3><img src="https://img.darklorder.com/img/202309061618958.webp" srcset="/img/loading.gif" lazyload/>
 
 
+
+<h3 id="Kubernetes集群组件"><a href="#Kubernetes集群组件" class="headerlink" title="Kubernetes集群组件"></a>Kubernetes集群组件</h3><img src="https://img.darklorder.com/img/202310091208219.png" srcset="/img/loading.gif" lazyload/>
+
+
+<h4 id="控制平面组件（Control-Plane-Components）"><a href="#控制平面组件（Control-Plane-Components）" class="headerlink" title="控制平面组件（Control Plane Components）"></a>控制平面组件（Control Plane Components）</h4><p><strong>kube-apiserver</strong><br>API 服务器是 Kubernetes 控制平面的组件， 该组件负责公开了 Kubernetes API，负责处理接受请求的工作。 API 服务器是 Kubernetes 控制平面的前端。</p>
+<p>Kubernetes API 服务器的主要实现是 kube-apiserver。 kube-apiserver 设计上考虑了水平扩缩，也就是说，它可通过部署多个实例来进行扩缩。 你可以运行 kube-apiserver 的多个实例，并在这些实例之间平衡流量。</p>
+<p><strong>etcd</strong><br>一致且高可用的键值存储，用作 Kubernetes 所有集群数据的后台数据库。</p>
+<p>如果你的 Kubernetes 集群使用 etcd 作为其后台数据库， 请确保你针对这些数据有一份 备份计划。</p>
+<p>你可以在官方文档中找到有关 etcd 的深入知识。</p>
+<p><strong>kube-scheduler</strong><br>kube-scheduler 是控制平面的组件， 负责监视新创建的、未指定运行节点（node）的 Pods， 并选择节点来让 Pod 在上面运行。</p>
+<p>调度决策考虑的因素包括单个 Pod 及 Pods 集合的资源需求、软硬件及策略约束、 亲和性及反亲和性规范、数据位置、工作负载间的干扰及最后时限。</p>
+<p><strong>kube-controller-manager</strong><br>kube-controller-manager 是控制平面的组件， 负责运行控制器进程。</p>
+<p>从逻辑上讲， 每个控制器都是一个单独的进程， 但是为了降低复杂性，它们都被编译到同一个可执行文件，并在同一个进程中运行。</p>
+<p>有许多不同类型的控制器。以下是一些例子：</p>
+<ul>
+<li>节点控制器（Node Controller）：负责在节点出现故障时进行通知和响应</li>
+<li>任务控制器（Job Controller）：监测代表一次性任务的 Job 对象，然后创建 Pods 来运行这些任务直至完成</li>
+<li>端点分片控制器（EndpointSlice controller）：填充端点分片（EndpointSlice）对象（以提供 Service 和 Pod 之间的链接）。</li>
+<li>服务账号控制器（ServiceAccount controller）：为新的命名空间创建默认的服务账号（ServiceAccount）。</li>
+</ul>
+<h4 id="Node-组件"><a href="#Node-组件" class="headerlink" title="Node 组件"></a>Node 组件</h4><p><strong>kubelet</strong><br>kubelet 会在集群中每个节点（node）上运行。 它保证容器（containers）都运行在 Pod 中。</p>
+<p>kubelet 接收一组通过各类机制提供给它的 PodSpec，确保这些 PodSpec 中描述的容器处于运行状态且健康。 kubelet 不会管理不是由 Kubernetes 创建的容器。</p>
+<p><strong>kube-proxy</strong><br>kube-proxy 是集群中每个节点（node）上所运行的网络代理， 实现 Kubernetes 服务（Service） 概念的一部分。</p>
+<p>kube-proxy 维护节点上的一些网络规则， 这些网络规则会允许从集群内部或外部的网络会话与 Pod 进行网络通信。</p>
+<p>如果操作系统提供了可用的数据包过滤层，则 kube-proxy 会通过它来实现网络规则。 否则，kube-proxy 仅做流量转发。</p>
+<p><strong>容器运行时（Container Runtime）</strong><br>这个基础组件使 Kubernetes 能够有效运行容器。 它负责管理 Kubernetes 环境中容器的执行和生命周期。</p>
+<p>Kubernetes 支持许多容器运行环境，例如 containerd、 CRI-O 以及 Kubernetes CRI (容器运行环境接口) 的其他任何实现。</p>
+<h4 id="插件（Addons）"><a href="#插件（Addons）" class="headerlink" title="插件（Addons）"></a>插件（Addons）</h4><p>有关可用插件的完整列表，请参见 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/cluster-administration/addons/">插件（Addons）</a>。</p>
+<p><strong>DNS</strong><br>尽管其他插件都并非严格意义上的必需组件，但几乎所有 Kubernetes 集群都应该有集群 DNS， 因为很多示例都需要 DNS 服务。</p>
+<p>集群 DNS 是一个 DNS 服务器，和环境中的其他 DNS 服务器一起工作，它为 Kubernetes 服务提供 DNS 记录。</p>
+<p>Kubernetes 启动的容器自动将此 DNS 服务器包含在其 DNS 搜索列表中。</p>
+<p><strong>网络插件</strong><br>网络插件 是实现容器网络接口（CNI）规范的软件组件。它们负责为 Pod 分配 IP 地址，并使这些 Pod 能在集群内部相互通信。</p>
+<h3 id="Kubernetes-对象管理"><a href="#Kubernetes-对象管理" class="headerlink" title="Kubernetes 对象管理"></a>Kubernetes 对象管理</h3><blockquote>
+<p>kubectl 工具支持三种对象管理：<br>命令式命令<br>命令式对象配置<br>声明式对象配置</p>
+</blockquote>
+<ul>
+<li>使用指令式命令管理 Kubernetes 对象</li>
+<li>使用配置文件对 Kubernetes 对象进行命令式管理</li>
+<li>使用配置文件对 Kubernetes 对象进行声明式管理</li>
+</ul>
+<h3 id="Kubernetes的资源对象"><a href="#Kubernetes的资源对象" class="headerlink" title="Kubernetes的资源对象"></a>Kubernetes的资源对象</h3><img src="https://img.darklorder.com/img/202112042053985.png" srcset="/img/loading.gif" lazyload alt="image-20211204205342922" style="zoom: 80%;" />
+
+<p>依据资源的主要功能作为分类标准，Kubernetes的API对象大体可分为工作负载（Workload）、发现和负载均衡（Discovery &amp; LB）、配置和存储（Conf?ig &amp; Storage）、集群（Cluster）以及元数据（Metadata）五个类别。<br>它们基本上都是围绕一个核心目的而设计：如何更好地运行和丰富Pod资源，从而为容器化应用提供更灵活、更完善的操作与管理组件</p>
 <hr>
-<p>微服务：分散能力。</p>
-<p>分布式：分散部署。</p>
-<p>微服务的设计是为了不因为某个模块的升级和BUG影响现有的系统业务。微服务与分布式的细微差别是，微服务的应用不一定是分散在多个服务器上，他也可以是同一个服务器。</p>
 <p><a target="_blank" rel="noopener" href="https://landscape.cncf.io/card-mode?category=certified-kubernetes-installer">https://landscape.cncf.io/card-mode?category=certified-kubernetes-installer</a></p>
-<hr>
-<h3 id="Kubernetes-对象管理"><a href="#Kubernetes-对象管理" class="headerlink" title="Kubernetes 对象管理"></a>Kubernetes 对象管理</h3><p><strong>参考资料</strong><br><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">Kubernetes 文档 | Kubernetes</a></p>
+<h3 id="Kubernetes-对象管理-1"><a href="#Kubernetes-对象管理-1" class="headerlink" title="Kubernetes 对象管理"></a>Kubernetes 对象管理</h3><p><strong>参考资料</strong><br><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/home/">Kubernetes 文档 | Kubernetes</a><br><a target="_blank" rel="noopener" href="https://book.douban.com/subject/30435129/">Kubernetes进阶实战</a></p>
 
                 
               </div>
