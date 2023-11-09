@@ -1,8 +1,11 @@
+https://www.darklorder.com/2023/11/07/Kubernetes-best-practices/
 https://www.darklorder.com/2023/10/01/Kubernetes-from-Introduction-to-Practice/
+https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/
+https://www.darklorder.com/2023/11/07/Kubernetes-Overview/
 https://www.darklorder.com/2023/10/09/DevOps-Interview-Questions/
+https://www.darklorder.com/2023/10/06/Kubectl-Commands/
 https://www.darklorder.com/2023/10/09/Kubernetes-Interview-Questions/
 https://www.darklorder.com/2023/10/08/Docker-Interview-Questions/
-https://www.darklorder.com/2022/10/03/Kubernetes-concepts-workloads-pods/
 https://www.darklorder.com/2022/08/11/G-W-F-Hegel/
 https://www.darklorder.com/2023/09/05/operators-in-kubernetes/
 https://www.darklorder.com/2022/09/04/Doker-from-Introduction-to-Practice/
