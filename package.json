@@ -27,7 +27,7 @@
     "hexo-server": "^3.0.0",
     "hexo-tag-dplayer": "^0.3.3",
     "hexo-theme-fluid": "^1.9.2",
-    "hexo-theme-landscape": "^0.0.3"
+    "hexo-theme-landscape": "^1.0.0"
   },
   "devDependencies": {
     "md5": "^2.3.0",
